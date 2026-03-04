@@ -5,6 +5,8 @@
     --font-ui: 'Inter', sans-serif;
     --color-white: #ffffff;
     --color-dark: #121212;
+    --color-deep-green: #0d1711;
+    --color-soft-green: #dfe9d7;
     --glass-bg: rgba(255, 255, 255, 0);
     --glass-border: rgba(255, 255, 255, 0.15);
 }
@@ -217,6 +219,192 @@ a {
     -webkit-text-fill-color: transparent;
 }
 
+/* Statement Section */
+.statement-section {
+    width: 100vw;
+    height: 100vh;
+    padding: 6rem 2rem;
+    background-color: var(--color-soft-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.statement-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.statement-container h2 {
+    font-family: var(--font-secondary);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    color: var(--color-deep-green);
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+}
+
+/* Brands Affiliati Section */
+.brands-section {
+    width: 100vw;
+    padding: 6rem 2rem;
+    background-color: var(--color-deep-green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.brands-caption {
+    font-family: var(--font-secondary);
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    color: var(--color-white);
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.5px;
+    opacity: 0.95;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Soft edges to smoothly fade logos in and out */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    width: max-content;
+    gap: 4rem;
+    align-items: center;
+    /* Left to Right animation as requested */
+    animation: scroll-left-to-right 20s linear infinite;
+    padding-left: 4rem;
+    /* Matching the gap for seamless looping */
+}
+
+.brand-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.brand-item img {
+    height: 100%;
+    max-width: 200px;
+    object-fit: contain;
+    /* This filter forces ANY colored logo into pure white */
+    filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.brand-item:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+@keyframes scroll-left-to-right {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Products Accordion Section */
+.products-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.product-accordion {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.accordion-item {
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.7s ease;
+    cursor: pointer;
+    overflow: hidden;
+    /* Default state: grayscale */
+    filter: grayscale(100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordion-item:last-child {
+    border-right: none;
+}
+
+.item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* darkened overlay */
+    transition: background 0.7s ease;
+    z-index: 1;
+}
+
+.accordion-item h3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    font-family: var(--font-primary);
+    font-size: clamp(1rem, 1.8vw, 2.2rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-align: center;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    opacity: 0.85;
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    width: 90%;
+    line-height: 1.2;
+}
+
+/* Hover effect */
+.product-accordion:hover .accordion-item {
+    filter: grayscale(100%);
+    /* ensuring others stay gray */
+}
+
+.accordion-item:hover {
+    flex: 2;
+    filter: grayscale(0%) !important;
+}
+
+.accordion-item:hover .item-overlay {
+    background: rgba(0, 0, 0, 0.35);
+    /* a bit lighter but still darkened to make text visible */
+}
+
+.accordion-item:hover h3 {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    letter-spacing: 1px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .navbar {
@@ -275,6 +463,19 @@ a {
     .subtitle .signature {
         font-size: clamp(2.5rem, 8vw, 3.5rem);
     }
+
+    .statement-section {
+        padding: 5rem 1.5rem;
+    }
+
+    /* Stack accordion slightly on tablet or keep flex but allow text wrap */
+    .products-section {
+        height: 80vh;
+    }
+
+    .accordion-item h3 {
+        font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+    }
 }
 
 @media (max-width: 480px) {
@@ -301,5 +502,42 @@ a {
 
     .subtitle .signature {
         font-size: 2.2rem;
+    }
+
+    .statement-section {
+        padding: 4rem 1rem;
+    }
+
+    .brands-section {
+        padding: 4rem 1rem;
+    }
+
+    .brand-item {
+        height: 50px;
+    }
+
+    /* Convert accordion to vertical stack on mobile */
+    .products-section {
+        height: auto;
+        min-height: 120vh;
+    }
+
+    .product-accordion {
+        flex-direction: column;
+    }
+
+    .accordion-item {
+        flex: 1;
+        min-height: 25vh;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .accordion-item:last-child {
+        border-bottom: none;
+    }
+
+    .accordion-item h3 {
+        font-size: 1.4rem;
     }
 }
