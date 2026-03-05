@@ -248,7 +248,7 @@ a {
 /* Brands Affiliati Section */
 .brands-section {
     width: 100vw;
-    padding: 6rem 2rem;
+    padding: 4rem 2rem;
     background-color: var(--color-deep-green);
     display: flex;
     flex-direction: column;
@@ -279,24 +279,31 @@ a {
 .marquee-content {
     display: flex;
     width: max-content;
-    gap: 4rem;
+    will-change: transform;
+}
+
+.marquee-group {
+    display: flex;
     align-items: center;
-    /* Left to Right animation as requested */
-    animation: scroll-left-to-right 20s linear infinite;
-    padding-left: 4rem;
-    /* Matching the gap for seamless looping */
+    gap: 6rem;
+    padding-right: 6rem;
+    flex-shrink: 0;
+    /* Animate the groups instead of the parent to prevent any flexbox rounding snap/flicker */
+    animation: scroll-left-to-right 24s linear infinite;
+    will-change: transform;
 }
 
 .brand-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 410px;
+    flex-shrink: 0;
 }
 
 .brand-item img {
     height: 100%;
-    max-width: 200px;
+    max-width: 260px;
     object-fit: contain;
     /* This filter forces ANY colored logo into pure white */
     filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
@@ -311,11 +318,11 @@ a {
 
 @keyframes scroll-left-to-right {
     0% {
-        transform: translateX(-50%);
+        transform: translate3d(-100%, 0, 0);
     }
 
     100% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
