@@ -137,8 +137,26 @@
         </div>
     </section>
 
+    <section class="animated-grid-demo">
+        <div class="animated-grid-pattern-container">
+            <div id="grid-pattern-container"></div>
+        </div>
+    </section>
+
+    <script src="components/animated-grid.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Animated Grid
+            if (window.AnimatedGridPattern) {
+                new AnimatedGridPattern('grid-pattern-container', {
+                    numSquares: 80,
+                    maxOpacity: 0.2,
+                    duration: 3,
+                    strokeColor: "rgba(223, 233, 215, 0.4)", // Brighter light green lines
+                    fillColor: "rgba(223, 233, 215, 1)" // Solid light green
+                });
+            }
+
             const mobileToggle = document.querySelector('.mobile-toggle');
             const navLinks = document.querySelector('.nav-links');
 
