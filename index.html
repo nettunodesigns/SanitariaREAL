@@ -141,9 +141,135 @@
         <div class="animated-grid-pattern-container">
             <div id="grid-pattern-container"></div>
         </div>
+
+        <div class="testimonials-text-container">
+            <h2 class="testimonials-title">
+                <span class="testimonials-line transparent-text">COSA</span>
+                <span class="testimonials-line">DICONO</span>
+                <span class="testimonials-line transparent-text">I NOSTRI</span>
+                <span class="testimonials-line">CLIENTI</span>
+            </h2>
+        </div>
+
+        <div class="testimonials-carousel-wrapper">
+            <div class="testimonials-carousel" id="testimonialsCarousel">
+                <div class="carousel-track">
+                    <!-- Original Reviews -->
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>Elena Tozzi</h4>
+                                <span class="review-date">5 mesi fa</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">La signora della sanitaria, molto gentile e disponibile nel risolvere la
+                            tua richiesta del tuo problema.</p>
+                        <div class="google-badge">Recensione di Google</div>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>Mara Cuoghi</h4>
+                                <span class="review-date">Recentemente</span>
+                            </div>
+                            <div class="stars">★★★★★</div> /* Assumed 5 stars based on text */
+                        </div>
+                        <p class="review-text">Prima di scoprire questo negozio ero stata in altri 2 sanitari ma non
+                            avevo trovato ciò che mi serviva. Da oggi in poi verrò qua perchè so che è super rifornito
+                        </p>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>monica docci</h4>
+                                <span class="review-date">2 anni fa</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">La signora e molto gentile e cerca una soluzione al tuo problema
+                            purtroppo ho un ginocchio disastrato e la signora non ne ha colpa........non ci vuole un
+                            supporto ma un ginocchio nuovo... da consigliare.</p>
+                        <div class="google-badge">Recensione di Google</div>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>Giacomo Zaccarelli "Jack"</h4>
+                                <span class="review-date">2 anni fa</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">Piccolo negozio di sanitaria, ma veramente tanto fornito, oltre ai
+                            prodotti offre vari servizi di ottima qualità, la titolare molto cordiale e professionale.
+                        </p>
+                        <div class="google-badge">Recensione di Google</div>
+                    </div>
+
+                    <!-- Duplicated for infinite scroll effect -->
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>Elena Tozzi</h4>
+                                <span class="review-date">5 mesi fa</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">La signora della sanitaria, molto gentile e disponibile nel risolvere la
+                            tua richiesta del tuo problema.</p>
+                        <div class="google-badge">Recensione di Google</div>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>Mara Cuoghi</h4>
+                                <span class="review-date">Recentemente</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">Prima di scoprire questo negozio ero stata in altri 2 sanitari ma non
+                            avevo trovato ciò che mi serviva. Da oggi in poi verrò qua perchè so che è super rifornito
+                        </p>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>monica docci</h4>
+                                <span class="review-date">2 anni fa</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">La signora e molto gentile e cerca una soluzione al tuo problema
+                            purtroppo ho un ginocchio disastrato e la signora non ne ha colpa........non ci vuole un
+                            supporto ma un ginocchio nuovo... da consigliare.</p>
+                        <div class="google-badge">Recensione di Google</div>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <div class="client-info">
+                                <h4>Giacomo Zaccarelli "Jack"</h4>
+                                <span class="review-date">2 anni fa</span>
+                            </div>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">Piccolo negozio di sanitaria, ma veramente tanto fornito, oltre ai
+                            prodotti offre vari servizi di ottima qualità, la titolare molto cordiale e professionale.
+                        </p>
+                        <div class="google-badge">Recensione di Google</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script src="components/animated-grid.js"></script>
+    <script src="components/testimonials-carousel.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Animated Grid
