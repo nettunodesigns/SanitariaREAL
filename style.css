@@ -7,6 +7,7 @@
     --font-ui: 'Inter', sans-serif;
     --color-white: #ffffff;
     --color-dark: #121212;
+    --color-dark-red: #b90505;
     --color-deep-green: #19291f;
     --color-soft-green: #dfe9d7;
     --glass-bg: rgba(255, 255, 255, 0);
@@ -49,24 +50,33 @@ a {
     flex-direction: column;
 }
 
-/* Header with Glassmorphism */
+/* Header */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 4rem;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1000;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, border-bottom 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 
-    /* Glass effect */
+    /* Completely transparent top */
+    background: transparent;
+    border-bottom: 1px solid transparent;
+}
+
+/* Scrolled Header with Glassmorphism */
+.navbar.scrolled {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--glass-border);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 1rem 4rem;
+    /* Shrink slightly on scroll */
 }
 
 .logo {
@@ -224,27 +234,67 @@ a {
 /* Statement Section */
 .statement-section {
     width: 100vw;
-    height: 100vh;
-    padding: 6rem 2rem;
+    height: 200vh;
     background-color: var(--color-soft-green);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
 .statement-container {
     max-width: 900px;
     margin: 0 auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
 }
 
 .statement-container h2 {
-    font-family: var(--font-secondary);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 500;
+    font-family: "Anton", sans-serif;
+    font-size: clamp(2.5rem, 6.5vw, 6.5rem);
+    font-weight: 400;
+    text-transform: uppercase;
     color: var(--color-deep-green);
-    line-height: 1.4;
-    letter-spacing: 0.5px;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.statement-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Word styling for text reveal */
+.reveal-word {
+    position: relative;
+    display: inline-block;
+    margin: 0 0.15em;
+    /* subtle horizontal spacing instead of relying entirely on text nodes */
+}
+
+.reveal-word .word-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+    color: var(--color-deep-green);
+}
+
+.reveal-word .word-fg {
+    color: var(--color-deep-green);
+    opacity: 0;
+    will-change: opacity;
 }
 
 /* Brands Affiliati Section */
@@ -473,8 +523,8 @@ a {
         font-size: clamp(2.5rem, 8vw, 3.5rem);
     }
 
-    .statement-section {
-        padding: 5rem 1.5rem;
+    .statement-container {
+        padding: 0 1.5rem;
     }
 
     /* Stack accordion slightly on tablet or keep flex but allow text wrap */
@@ -513,8 +563,8 @@ a {
         font-size: 2.2rem;
     }
 
-    .statement-section {
-        padding: 4rem 1rem;
+    .statement-container {
+        padding: 0 1rem;
     }
 
     .brands-section {

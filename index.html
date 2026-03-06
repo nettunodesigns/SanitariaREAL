@@ -60,7 +60,11 @@
 
     <section class="statement-section">
         <div class="statement-container">
-            <h2>Articoli Ortopedici e Medicali per migliorare la Terza Et&agrave;</h2>
+            <h2>
+                <div class="statement-line">ARTICOLI ORTOPEDICI E</div>
+                <div class="statement-line">MEDICALI PER MIGLIORARE</div>
+                <div class="statement-line">LA TERZA ET&agrave;</div>
+            </h2>
         </div>
     </section>
 
@@ -174,7 +178,7 @@
                                 <h4>Mara Cuoghi</h4>
                                 <span class="review-date">Recentemente</span>
                             </div>
-                            <div class="stars">★★★★★</div> /* Assumed 5 stars based on text */
+                            <div class="stars">★★★★★</div>
                         </div>
                         <p class="review-text">Prima di scoprire questo negozio ero stata in altri 2 sanitari ma non
                             avevo trovato ciò che mi serviva. Da oggi in poi verrò qua perchè so che è super rifornito
@@ -184,7 +188,7 @@
                     <div class="glass-card">
                         <div class="card-header">
                             <div class="client-info">
-                                <h4>monica docci</h4>
+                                <h4>Monica Docci</h4>
                                 <span class="review-date">2 anni fa</span>
                             </div>
                             <div class="stars">★★★★★</div>
@@ -239,7 +243,7 @@
                     <div class="glass-card">
                         <div class="card-header">
                             <div class="client-info">
-                                <h4>monica docci</h4>
+                                <h4>Monica Docci</h4>
                                 <span class="review-date">2 anni fa</span>
                             </div>
                             <div class="stars">★★★★★</div>
@@ -270,6 +274,7 @@
 
     <script src="components/animated-grid.js"></script>
     <script src="components/testimonials-carousel.js"></script>
+    <script src="components/text-reveal.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Animated Grid
@@ -285,10 +290,20 @@
 
             const mobileToggle = document.querySelector('.mobile-toggle');
             const navLinks = document.querySelector('.nav-links');
+            const navbar = document.querySelector('.navbar');
 
             mobileToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
                 mobileToggle.classList.toggle('active');
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
         });
     </script>
