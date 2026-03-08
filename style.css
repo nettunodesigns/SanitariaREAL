@@ -8,7 +8,7 @@
     --color-white: #ffffff;
     --color-dark: #121212;
     --color-dark-red: #b90505;
-    --color-deep-green: #19291f;
+    --color-deep-green: #22392b;
     --color-soft-green: #dfe9d7;
     --glass-bg: rgba(255, 255, 255, 0);
     --glass-border: rgba(255, 255, 255, 0.15);
@@ -34,6 +34,113 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+/* --- Global Animation Classes --- */
+
+/* Base animation setup */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+}
+
+/* Modifiers for direction */
+.fade-up {
+    transform: translateY(40px);
+}
+
+.fade-down {
+    transform: translateY(-40px);
+}
+
+.fade-left {
+    transform: translateX(40px);
+}
+
+.fade-right {
+    transform: translateX(-40px);
+}
+
+.zoom-in {
+    transform: scale(0.95);
+}
+
+/* When element enters viewport */
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+}
+
+/* Optional Stagger Delays */
+.delay-1 {
+    transition-delay: 0.1s;
+}
+
+.delay-2 {
+    transition-delay: 0.2s;
+}
+
+.delay-3 {
+    transition-delay: 0.3s;
+}
+
+.delay-4 {
+    transition-delay: 0.4s;
+}
+
+.delay-5 {
+    transition-delay: 0.5s;
+}
+
+/* Hero Specific Animations (CSS Keyframes) */
+@keyframes heroFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroFadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heroFadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes navSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Hero Section */
@@ -77,6 +184,11 @@ a {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     padding: 1rem 4rem;
     /* Shrink slightly on scroll */
+}
+
+/* Header Entry Animation */
+.navbar {
+    animation: navSlideDown 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .logo {
@@ -177,6 +289,9 @@ a {
     position: absolute;
     bottom: 10%;
     left: 6%;
+    opacity: 0;
+    animation: heroFadeInLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.3s;
 }
 
 .main-title h1 {
@@ -201,6 +316,9 @@ a {
     bottom: 8%;
     right: 6%;
     text-align: right;
+    opacity: 0;
+    animation: heroFadeInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.6s;
 }
 
 .subtitle .small-text {
@@ -355,6 +473,9 @@ a {
 
 .brand-item img {
     height: 100%;
+    max-height: 200px;
+    /* Additional cap to prevent them from looking awkwardly tall */
+    width: auto;
     max-width: 260px;
     object-fit: contain;
     /* This filter forces ANY colored logo into pure white */
@@ -572,7 +693,8 @@ a {
     }
 
     .brand-item {
-        height: 50px;
+        height: 120px;
+        /* Increased gracefully to make logos much larger without clipping */
     }
 
     /* Convert accordion to vertical stack on mobile */
@@ -880,5 +1002,228 @@ a {
         transform: none;
         padding: 0 1.5rem;
         width: 100%;
+    }
+}
+
+/* Site Footer */
+.site-footer {
+    width: 100vw;
+    background: linear-gradient(to bottom, var(--color-deep-green), var(--color-dark));
+    color: var(--color-white);
+    padding: 6rem 4rem 2rem;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    align-self: flex-start;
+}
+
+.footer-tagline {
+    font-family: var(--font-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    max-width: 320px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-socials a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-socials a:hover {
+    color: var(--color-white);
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer-links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.footer-heading {
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+    color: var(--color-white);
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-soft-green);
+    border-radius: 2px;
+}
+
+.footer-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.footer-list li {
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-list li:hover {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-list svg {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--color-soft-green);
+    opacity: 0.8;
+}
+
+.footer-list a {
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-list a:hover {
+    color: var(--color-white);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.day {
+    font-weight: 600;
+    color: var(--color-white);
+    display: inline-block;
+    min-width: 95px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 1024px) {
+    .site-footer {
+        padding: 5rem 3rem 2rem;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .footer-brand {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo {
+        align-self: center;
+    }
+
+    .footer-heading::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-heading {
+        text-align: center;
+    }
+
+    .footer-list li {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 4rem 2rem 2rem;
+    }
+
+    .footer-links-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .footer-tagline {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .footer-list li {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .day {
+        min-width: auto;
+        margin-bottom: 0.2rem;
+    }
+
+    .footer-list svg {
+        margin-bottom: 0.5rem;
     }
 }
