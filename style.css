@@ -7,11 +7,17 @@
     --font-ui: 'Inter', sans-serif;
     --color-white: #ffffff;
     --color-dark: #121212;
-    --color-dark-red: #b90505;
+    --color-dark-red: #b90505d7;
     --color-deep-green: #22392b;
-    --color-soft-green: #dfe9d7;
+    --color-soft-green: #52906dbc;
     --glass-bg: rgba(255, 255, 255, 0);
     --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+html,
+body {
+    overflow-x: clip;
+    max-width: 100%;
 }
 
 /* Reset */
@@ -25,7 +31,7 @@ body {
     font-family: var(--font-primary);
     background-color: var(--color-dark);
     color: var(--color-white);
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -146,15 +152,60 @@ a {
 /* Hero Section */
 .hero {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    /* Background image with subtle dark overlay */
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url('sources/bgHERO_mamma_enhanced.png');
+    /* Background image is handled by hero-slider now */
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Background Slider */
+.hero-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
+    opacity: 0;
+    animation: heroCrossfade 12s infinite ease-in-out;
+}
+
+/* Apply gradient overlay to each slide directly */
+.hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3));
+}
+
+.hero-slide:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero-slide:nth-child(2) {
+    animation-delay: 4s;
+}
+
+.hero-slide:nth-child(3) {
+    animation-delay: 8s;
+}
+
+@keyframes heroCrossfade {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    28% { opacity: 1; }
+    33% { opacity: 0; }
+    100% { opacity: 0; }
 }
 
 /* Header */
@@ -266,6 +317,95 @@ a {
     transform: scale(1.15);
 }
 
+/* --- Dropdown Menu --- */
+.nav-item.has-dropdown {
+    position: relative;
+    /* allow the link hit area to cover the gap to the dropdown */
+    padding-bottom: 0.5rem;
+    margin-bottom: -0.5rem;
+}
+
+.dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Optional caret arrow */
+.dropdown-trigger::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid var(--color-white);
+    border-bottom: 2px solid var(--color-white);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-right: 4px;
+    margin-bottom: 2px;
+}
+
+.has-dropdown:hover .dropdown-trigger::before {
+    transform: rotate(225deg);
+    margin-bottom: -2px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    width: 220px;
+    background: rgba(35, 35, 35, 0.445);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.8rem 0;
+
+    /* Animation hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+/* Desktop Hover Trigger */
+.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    color: var(--color-white);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    text-shadow: none;
+    /* remove navbar text-shadow */
+}
+
+.dropdown-menu a::after {
+    display: none;
+    /* remove hover line */
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 2rem;
+    /* nice little nudge effect */
+    color: var(--color-white);
+    opacity: 1;
+}
+
 .mobile-toggle {
     display: none;
     background: none;
@@ -282,13 +422,14 @@ a {
     position: relative;
     width: 100%;
     height: 100%;
+    z-index: 10;
 }
 
-/* Main Title Area (Bottom Left) */
+/* Main Title Area (Top Left) */
 .main-title {
     position: absolute;
-    bottom: 10%;
-    left: 6%;
+    top: 11%;
+    left: 3%;
     opacity: 0;
     animation: heroFadeInLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     animation-delay: 0.3s;
@@ -351,7 +492,7 @@ a {
 
 /* Statement Section */
 .statement-section {
-    width: 100vw;
+    width: 100%;
     height: 200vh;
     background-color: var(--color-soft-green);
     position: relative;
@@ -410,14 +551,14 @@ a {
 }
 
 .reveal-word .word-fg {
-    color: var(--color-deep-green);
+    color: var(--color-white);
     opacity: 0;
     will-change: opacity;
 }
 
 /* Brands Affiliati Section */
 .brands-section {
-    width: 100vw;
+    width: 100%;
     padding: 4rem 2rem;
     background-color: var(--color-deep-green);
     display: flex;
@@ -501,7 +642,7 @@ a {
 
 /* Products Accordion Section */
 .products-section {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     overflow: hidden;
@@ -604,7 +745,8 @@ a {
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
+        transform: translateX(100%);
         width: 100%;
         height: 100vh;
         background: rgba(18, 18, 18, 0.98);
@@ -613,20 +755,88 @@ a {
         flex-direction: column;
         justify-content: center;
         gap: 2.5rem;
-        transition: right 0.4s ease-in-out;
+        transition: transform 0.4s ease-in-out;
         z-index: 15;
     }
 
     .nav-links.active {
-        right: 0;
+        transform: translateX(0);
     }
 
     .nav-links a {
         font-size: 1.25rem;
     }
 
+    /* Mobile Dropdown Overrides (Accordion Style) */
+    .nav-links .has-dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .nav-links .dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: 300px;
+        background: transparent;
+        /* Same background as menu */
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 1rem;
+        border-radius: 8px;
+
+        /* Accordion transition logic */
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, opacity 0.3s ease, margin-top 0.3s;
+    }
+
+    /* Disable default hover logic on mobile so it only works on tap/click */
+    .has-dropdown:hover .dropdown-menu {
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+    }
+
+    /* Active Toggle State via JS */
+    .has-dropdown.dropdown-open .dropdown-menu {
+        max-height: 400px;
+        /* Arbitrary large height to let transition work */
+        opacity: 1;
+        visibility: visible;
+        padding: 0.5rem 0;
+    }
+
+    .has-dropdown.dropdown-open .dropdown-trigger::before {
+        transform: rotate(225deg);
+        margin-bottom: -2px;
+    }
+
+    .dropdown-menu a {
+        text-align: center;
+        padding: 0.8rem 1rem;
+        font-size: 1.1rem;
+        /* Slightly larger on mobile for touch targets */
+    }
+
+    .dropdown-menu a:hover {
+        padding-left: 1rem;
+        /* No nudge on mobile */
+        background: rgba(255, 255, 255, 0.15);
+    }
+
     .main-title {
-        bottom: 25%;
+        top: 20%;
         left: 8%;
     }
 
@@ -667,6 +877,15 @@ a {
         height: 38px;
     }
 
+    .main-title {
+        top: 15%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
     .main-title h1 {
         font-size: 2.8rem;
         line-height: 1;
@@ -674,6 +893,12 @@ a {
 
     .subtitle {
         bottom: 5%;
+        right: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .subtitle .small-text {
@@ -726,7 +951,7 @@ a {
 /* Animated Grid Section */
 .animated-grid-demo {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -817,13 +1042,18 @@ a {
 
 @media (max-width: 480px) {
     .testimonials-text-container {
-        left: 1rem;
+        left: 0;
+        width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
     }
 
     .testimonials-title {
         font-size: 3.2rem;
         /* Static fallback so it never breaks layout on tiny phones */
         line-height: 1.1;
+        align-items: center;
     }
 }
 
@@ -1007,7 +1237,7 @@ a {
 
 /* Site Footer */
 .site-footer {
-    width: 100vw;
+    width: 100%;
     background: linear-gradient(to bottom, var(--color-deep-green), var(--color-dark));
     color: var(--color-white);
     padding: 6rem 4rem 2rem;

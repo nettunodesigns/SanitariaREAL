@@ -16,13 +16,29 @@
 
 <body>
     <section class="hero">
+        <!-- Background Slider -->
+        <div class="hero-slider">
+            <div class="hero-slide" style="background-image: url('sources/Landing_Hero/bgHERO_neck.png');"></div>
+            <div class="hero-slide" style="background-image: url('sources/Landing_Hero/bgHERO_hip.jpeg');"></div>
+            <div class="hero-slide" style="background-image: url('sources/Landing_Hero/bgHERO_knee.png');"></div>
+        </div>
+
         <header class="navbar">
             <div class="logo">
                 <img src="sources/Logo_Mamma.svg" alt="Sanitaria Croce Logo">
             </div>
             <nav class="nav-links">
                 <a href="#">Homepage</a>
-                <a href="#">Prodotti</a>
+                <div class="nav-item has-dropdown">
+                    <a href="#prodotti" class="dropdown-trigger">Prodotti</a>
+                    <div class="dropdown-menu">
+                        <a href="#elettromedicali">Elettromedicali</a>
+                        <a href="#ortopedici">Ortopedici</a>
+                        <a href="#ausili">Ausili per Disabili</a>
+                        <a href="#cuscini">Cuscini</a>
+                        <a href="#creme">Creme</a>
+                    </div>
+                </div>
                 <a href="#">Contatti</a>
             </nav>
             <div class="social-icon">
@@ -371,10 +387,20 @@
             const mobileToggle = document.querySelector('.mobile-toggle');
             const navLinks = document.querySelector('.nav-links');
             const navbar = document.querySelector('.navbar');
+            const dropdownTrigger = document.querySelector('.dropdown-trigger');
 
             mobileToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
                 mobileToggle.classList.toggle('active');
+            });
+
+            // Handle Mobile Accordion Dropdown
+            dropdownTrigger.addEventListener('click', (e) => {
+                // If it's a mobile screen (where navLinks has the active class functionality)
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Prevent jump to # anchor
+                    dropdownTrigger.parentElement.classList.toggle('dropdown-open');
+                }
             });
 
             // Header scroll effect

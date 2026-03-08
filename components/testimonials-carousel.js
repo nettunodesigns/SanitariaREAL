@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto Scroll variables
     let autoScrollInterval;
-    const scrollAmount = 2; // Pixels per frame
+    const scrollAmount = 1; // Pixels per frame
     let lastTime = 0;
     let hoverState = false;
 
