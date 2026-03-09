@@ -201,11 +201,25 @@ a {
 }
 
 @keyframes heroCrossfade {
-    0% { opacity: 0; }
-    5% { opacity: 1; }
-    28% { opacity: 1; }
-    33% { opacity: 0; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    28% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Header */
@@ -428,7 +442,7 @@ a {
 /* Main Title Area (Top Left) */
 .main-title {
     position: absolute;
-    top: 11%;
+    top: 14%;
     left: 3%;
     opacity: 0;
     animation: heroFadeInLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -836,7 +850,7 @@ a {
     }
 
     .main-title {
-        top: 20%;
+        top: 35%;
         left: 8%;
     }
 
@@ -845,7 +859,7 @@ a {
     }
 
     .subtitle {
-        bottom: 8%;
+        bottom: 35%;
         right: 8%;
         text-align: right;
     }
@@ -878,7 +892,7 @@ a {
     }
 
     .main-title {
-        top: 15%;
+        top: 40%;
         left: 0;
         width: 100%;
         display: flex;
@@ -892,7 +906,7 @@ a {
     }
 
     .subtitle {
-        bottom: 5%;
+        bottom: 35%;
         right: 0;
         width: 100%;
         display: flex;
@@ -1455,5 +1469,506 @@ a {
 
     .footer-list svg {
         margin-bottom: 0.5rem;
+    }
+}
+
+/* --- ELETTROMEDICALI PAGE STYLES --- */
+
+.page-hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.page-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    filter: brightness(0.8) contrast(1.1);
+}
+
+.page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.4) 0%, rgba(18, 18, 18, 0.95) 100%);
+    z-index: 1;
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 2rem;
+    margin-top: 80px; /* offset navbar */
+}
+
+.page-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    text-transform: uppercase;
+    color: var(--color-white);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.page-subtitle {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-soft-green);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.page-description-section {
+    padding: 4rem 2rem;
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-desc-container {
+    max-width: 800px;
+    text-align: center;
+}
+
+.page-desc-container h2 {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+}
+
+.page-desc-container p {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- FULLSCREEN SCROLL SPY LAYOUT STYLES --- */
+
+/* Hero (100vh) */
+.fullscreen-hero {
+    height: 100vh !important;
+}
+
+/* Base App Layout */
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* -----------------------------------------
+   STICKY BARE INDEX (Vertical Line)
+------------------------------------------ */
+.sticky-bare-index {
+    position: fixed;
+    top: 50%;
+    left: 3%; /* Very close to left edge */
+    transform: translateY(-50%);
+    z-index: 50;
+    
+    /* Fades in and out based on JS logic */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    pointer-events: auto;
+}
+
+.sticky-bare-index.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.bare-index-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-left: 0;
+    margin: 0;
+    /* The core vertical line */
+    position: relative;
+}
+
+/* The continuous bare vertical line acting as the track */
+.bare-index-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; /* Left alignment line */
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1); /* Very subtle track line */
+    z-index: -1;
+}
+
+.bare-index-list a {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.35); /* Dimmed when inactive */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-left: 20px; /* Space from the border */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    white-space: nowrap;
+}
+
+/* The active state indicator moving along the line */
+.bare-index-list a::before {
+    content: '';
+    position: absolute;
+    left: -1px; /* Overlap the track */
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: transparent;
+    transition: background 0.4s ease, height 0.4s ease;
+    border-radius: 4px;
+}
+
+.bare-index-list .index-number {
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    margin-right: 12px;
+    opacity: 0.5;
+    transition: all 0.4s ease;
+}
+
+/* Hover State for Index */
+.bare-index-list a:hover {
+    color: rgba(255, 255, 255, 0.7);
+    transform: translateX(5px);
+}
+
+/* The Magic Scroll-Spy ACTIVE State */
+.bare-index-list a.active {
+    color: var(--color-white); /* Pure white text */
+    padding-left: 25px; /* Push out slightly */
+}
+
+/* Illuminate the vertical line segment */
+.bare-index-list a.active::before {
+    background: var(--color-soft-green); 
+    box-shadow: 0 0 10px var(--color-soft-green);
+}
+
+.bare-index-list a.active .index-number {
+    color: var(--color-soft-green);
+    opacity: 1; 
+    transform: scale(1.1); 
+}
+
+
+/* -----------------------------------------
+   FULLSCREEN PRODUCT SECTIONS (SPLIT)
+------------------------------------------ */
+.fullscreen-product-container {
+    width: 100%;
+    /* Create a permanent margin on the left for the bare index so the layout never overlaps */
+    padding-left: 12%; 
+    padding-right: 5%;
+    margin-bottom: 0;
+}
+
+.fullscreen-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center; /* Vertically center the split layout */
+    justify-content: center;
+    padding: 6rem 0; 
+    position: relative;
+}
+
+/* Subtle separator between full sections */
+.fullscreen-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+}
+
+.fullscreen-section:last-child::after {
+    display: none;
+}
+
+/* Desktop Split Layout Container */
+.split-section-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* Make both columns equal semantic height */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px; /* Cap width for extreme ultra-wide monitors */
+    gap: 4rem;
+}
+
+/* Reverse class to alternate Image/Text positions */
+/* Standard: Text Left, Image Right */
+/* Reverse: Image Left, Text Right */
+.split-section-container.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+.section-content-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.section-image-column {
+    flex: 0.8; /* Image takes slightly less width than highly descriptive text */
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 500px;
+}
+
+/* Placeholder for Images */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-ui);
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding: 2rem;
+    transition: border-color 0.4s ease;
+}
+
+.split-section-container:hover .image-placeholder {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.text-muted {
+    opacity: 0.5;
+}
+
+/* Inner Text Styling */
+.panel-header {
+    margin-bottom: 2rem;
+}
+
+.panel-header h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.availability-tag {
+    display: inline-block;
+    padding: 8px 18px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+}
+
+.highlight-tag {
+    background: rgba(82, 144, 109, 0.15); 
+    border-color: var(--color-soft-green);
+    color: #e0f0e5; 
+}
+
+.panel-content p {
+    font-family: var(--font-ui);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.5rem;
+}
+
+.panel-content p:last-child {
+    margin-bottom: 0;
+}
+
+.panel-footer {
+    margin-top: 3rem;
+    display: flex;
+}
+
+/* CTA Buttons */
+.cta-button {
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 16px 36px;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    text-align: center;
+}
+
+.primary-cta {
+    background: var(--color-deep-green);
+    color: var(--color-white);
+    border: 1px solid var(--color-soft-green);
+    box-shadow: 0 4px 15px rgba(34, 57, 43, 0.6);
+}
+
+.primary-cta:hover {
+    background: var(--color-soft-green);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(82, 144, 109, 0.5);
+}
+
+.secondary-cta {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.secondary-cta:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-white);
+}
+
+/* RESPONSIVE DESIGN FOR 100VH LAYOUT */
+
+@media (max-width: 1200px) {
+    .fullscreen-product-container {
+        padding-left: 15%; /* Push content out from the bare index line */
+    }
+    .split-section-container {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Tablet Portrait: Move sticky line index to TOP as horizontal scroller */
+    .sticky-bare-index {
+        position: sticky;
+        top: 80px; /* Under navbar */
+        left: 0;
+        width: 100%;
+        transform: none;
+        padding: 1rem 0;
+        z-index: 45; /* Under navbar */
+        background: rgba(18, 18, 18, 0.9); /* Opaque background so it reads over content */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .bare-index-list {
+        flex-direction: row;
+        overflow-x: auto;
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
+        gap: 2rem;
+        padding: 0 1rem 5px 1rem; 
+    }
+    
+    .bare-index-list::-webkit-scrollbar { 
+        display: none;
+    }
+
+    /* Remove the vertical track line */
+    .bare-index-list::before {
+        display: none;
+    }
+    
+    .bare-index-list a {
+        white-space: nowrap;
+        padding-left: 0;
+        padding-bottom: 5px;
+    }
+
+    /* Move active indicator to bottom (horizontal track) */
+    .bare-index-list a::before {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 2px;
+    }
+    
+    .bare-index-list a.active {
+        padding-left: 0;
+    }
+
+    .fullscreen-product-container {
+        padding-left: 2rem; 
+        padding-right: 2rem;
+    }
+    
+    .fullscreen-section {
+        min-height: auto; /* Remove 100vh constraint on tablet to let content dict height */
+        padding: 4rem 0;
+    }
+
+    /* Stack the split layout vertically */
+    .split-section-container,
+    .split-section-container.reverse-layout {
+        flex-direction: column-reverse; /* Usually image on top, text below */
+        gap: 3rem;
+    }
+    
+    .section-image-column {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        height: 100vh; 
+    }
+    
+    .panel-header h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        padding: 16px 10px;
+    }
+    
+    .fullscreen-product-container {
+        padding-left: 1.5rem; 
+        padding-right: 1.5rem;
+    }
+
+    .section-image-column {
+        min-height: 300px;
     }
 }
