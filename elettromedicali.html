@@ -20,6 +20,23 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Guided Scroll Snapping (Desktop Only) */
+        @media (min-width: 1025px) {
+            html {
+                scroll-snap-type: y mandatory;
+            }
+            .fullscreen-hero,
+            .fullscreen-section {
+                scroll-snap-align: start;
+                /* Prevent scrolling past multiple sections quickly */
+                scroll-snap-stop: always;
+            }
+            .site-footer {
+                /* Snap bottom of the footer to the bottom of the viewport */
+                scroll-snap-align: end;
+            }
+        }
     </style>
 </head>
 
@@ -406,6 +423,7 @@
             const heroSection = document.getElementById('hero');
             const footerSection = document.getElementById('site-footer');
             const scrollSpyMenu = document.getElementById('scroll-spy-menu');
+            let scrollTimeout;
             
             // Toggle Navbar scrolled state AND ScrollSpy Menu visibility
             window.addEventListener('scroll', () => {
@@ -416,16 +434,28 @@
                     navbar.classList.remove('scrolled');
                 }
 
-                // Show Index only between hero and footer
+                // Show Index only while scrolling between hero and footer
                 if(heroSection && footerSection && scrollSpyMenu) {
                     const heroRect = heroSection.getBoundingClientRect();
                     const footerRect = footerSection.getBoundingClientRect();
                     
                     // Show when hero bottom is above the middle of screen, and footer isn't covering top half
                     if (heroRect.bottom <= (window.innerHeight / 2) && footerRect.top >= (window.innerHeight / 2)) {
-                        scrollSpyMenu.classList.remove('hidden');
+                        // User is in the product sections and actively scrolling
+                        scrollSpyMenu.classList.add('is-visible');
+                        
+                        // Clear the existing timeout so it doesn't fade while actively scrolling
+                        clearTimeout(scrollTimeout);
+                        
+                        // Set a timeout to fade the menu out after 1.5 seconds of inactivity
+                        scrollTimeout = setTimeout(() => {
+                            scrollSpyMenu.classList.remove('is-visible');
+                        }, 1500);
+
                     } else {
-                        scrollSpyMenu.classList.add('hidden');
+                        // Immediately hide if entering Hero or Footer
+                        scrollSpyMenu.classList.remove('is-visible');
+                        clearTimeout(scrollTimeout);
                     }
                 }
             });

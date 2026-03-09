@@ -16,7 +16,6 @@
 
 html,
 body {
-    overflow-x: clip;
     max-width: 100%;
 }
 
@@ -31,7 +30,6 @@ body {
     font-family: var(--font-primary);
     background-color: var(--color-dark);
     color: var(--color-white);
-    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -158,6 +156,7 @@ a {
     background: transparent;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* Background Slider */
@@ -578,7 +577,8 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    /* Prevent marquee from breaking screen width */
 }
 
 .brands-caption {
@@ -742,6 +742,12 @@ a {
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
     .navbar {
         padding: 1.5rem 3rem;
     }
@@ -1509,7 +1515,8 @@ a {
     z-index: 2;
     text-align: center;
     padding: 0 2rem;
-    margin-top: 80px; /* offset navbar */
+    margin-top: 80px;
+    /* offset navbar */
 }
 
 .page-title {
@@ -1575,22 +1582,32 @@ body {
 ------------------------------------------ */
 .sticky-bare-index {
     position: fixed;
-    top: 50%;
-    left: 3%; /* Very close to left edge */
-    transform: translateY(-50%);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 350px;
+    /* Width of the shadow gradient */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3%;
+    /* Text distance from the extreme left edge */
     z-index: 50;
-    
-    /* Fades in and out based on JS logic */
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-    pointer-events: auto;
-}
 
-.sticky-bare-index.hidden {
+    /* Dark shade covering the whole side to ensure contrast */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 100%);
+
+    /* Hidden by default, only shown while scrolling via JS */
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
     pointer-events: none;
+}
+
+.sticky-bare-index.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .bare-index-list {
@@ -1610,9 +1627,11 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0; /* Left alignment line */
+    left: 0;
+    /* Left alignment line */
     width: 2px;
-    background: rgba(255, 255, 255, 0.1); /* Very subtle track line */
+    background: rgba(255, 255, 255, 0.1);
+    /* Very subtle track line */
     z-index: -1;
 }
 
@@ -1621,11 +1640,13 @@ body {
     align-items: center;
     font-family: var(--font-ui);
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.35); /* Dimmed when inactive */
+    color: rgba(255, 255, 255, 0.35);
+    /* Dimmed when inactive */
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
-    padding-left: 20px; /* Space from the border */
+    padding-left: 20px;
+    /* Space from the border */
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     white-space: nowrap;
 }
@@ -1634,7 +1655,8 @@ body {
 .bare-index-list a::before {
     content: '';
     position: absolute;
-    left: -1px; /* Overlap the track */
+    left: -1px;
+    /* Overlap the track */
     top: 0;
     bottom: 0;
     width: 4px;
@@ -1659,20 +1681,22 @@ body {
 
 /* The Magic Scroll-Spy ACTIVE State */
 .bare-index-list a.active {
-    color: var(--color-white); /* Pure white text */
-    padding-left: 25px; /* Push out slightly */
+    color: var(--color-white);
+    /* Pure white text */
+    padding-left: 25px;
+    /* Push out slightly */
 }
 
 /* Illuminate the vertical line segment */
 .bare-index-list a.active::before {
-    background: var(--color-soft-green); 
+    background: var(--color-soft-green);
     box-shadow: 0 0 10px var(--color-soft-green);
 }
 
 .bare-index-list a.active .index-number {
     color: var(--color-soft-green);
-    opacity: 1; 
-    transform: scale(1.1); 
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 
@@ -1681,8 +1705,8 @@ body {
 ------------------------------------------ */
 .fullscreen-product-container {
     width: 100%;
-    /* Create a permanent margin on the left for the bare index so the layout never overlaps */
-    padding-left: 12%; 
+    /* Let the content stretch wider. The scrolling index will sit on top of images/text safely thanks to its dark gradient. */
+    padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 0;
 }
@@ -1691,9 +1715,10 @@ body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    align-items: center; /* Vertically center the split layout */
+    align-items: center;
+    /* Vertically center the split layout */
     justify-content: center;
-    padding: 6rem 0; 
+    padding: 6rem 0;
     position: relative;
 }
 
@@ -1705,7 +1730,7 @@ body {
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
 }
 
 .fullscreen-section:last-child::after {
@@ -1716,10 +1741,12 @@ body {
 .split-section-container {
     display: flex;
     flex-direction: row;
-    align-items: stretch; /* Make both columns equal semantic height */
+    align-items: stretch;
+    /* Make both columns equal semantic height */
     justify-content: space-between;
     width: 100%;
-    max-width: 1400px; /* Cap width for extreme ultra-wide monitors */
+    max-width: 1400px;
+    /* Cap width for extreme ultra-wide monitors */
     gap: 4rem;
 }
 
@@ -1739,7 +1766,8 @@ body {
 }
 
 .section-image-column {
-    flex: 0.8; /* Image takes slightly less width than highly descriptive text */
+    flex: 0.8;
+    /* Image takes slightly less width than highly descriptive text */
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -1803,9 +1831,9 @@ body {
 }
 
 .highlight-tag {
-    background: rgba(82, 144, 109, 0.15); 
+    background: rgba(82, 144, 109, 0.15);
     border-color: var(--color-soft-green);
-    color: #e0f0e5; 
+    color: #e0f0e5;
 }
 
 .panel-content p {
@@ -1867,38 +1895,49 @@ body {
 
 @media (max-width: 1200px) {
     .fullscreen-product-container {
-        padding-left: 15%; /* Push content out from the bare index line */
+        padding-left: 15%;
+        /* Push content out from the bare index line */
     }
+
     .split-section-container {
         gap: 2rem;
     }
 }
 
 @media (max-width: 1024px) {
+
     /* Tablet Portrait: Move sticky line index to TOP as horizontal scroller */
     .sticky-bare-index {
         position: sticky;
-        top: 80px; /* Under navbar */
+        top: 80px;
+        /* Under navbar */
         left: 0;
         width: 100%;
+        height: auto;
+        /* Remove 100vh constraint */
+        display: block;
+        /* Remove flex column */
         transform: none;
         padding: 1rem 0;
-        z-index: 45; /* Under navbar */
-        background: rgba(18, 18, 18, 0.9); /* Opaque background so it reads over content */
+        z-index: 45;
+        /* Under navbar */
+        background: rgba(18, 18, 18, 0.9);
+        /* Solid opaque background */
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* Keep it permanently visible on tablet/mobile if needed, or JS will handle it */
     }
-    
+
     .bare-index-list {
         flex-direction: row;
         overflow-x: auto;
-        -ms-overflow-style: none;  
-        scrollbar-width: none;  
+        -ms-overflow-style: none;
+        scrollbar-width: none;
         gap: 2rem;
-        padding: 0 1rem 5px 1rem; 
+        padding: 0 1rem 5px 1rem;
     }
-    
-    .bare-index-list::-webkit-scrollbar { 
+
+    .bare-index-list::-webkit-scrollbar {
         display: none;
     }
 
@@ -1906,7 +1945,7 @@ body {
     .bare-index-list::before {
         display: none;
     }
-    
+
     .bare-index-list a {
         white-space: nowrap;
         padding-left: 0;
@@ -1922,28 +1961,30 @@ body {
         width: auto;
         height: 2px;
     }
-    
+
     .bare-index-list a.active {
         padding-left: 0;
     }
 
     .fullscreen-product-container {
-        padding-left: 2rem; 
+        padding-left: 2rem;
         padding-right: 2rem;
     }
-    
+
     .fullscreen-section {
-        min-height: auto; /* Remove 100vh constraint on tablet to let content dict height */
+        min-height: auto;
+        /* Remove 100vh constraint on tablet to let content dict height */
         padding: 4rem 0;
     }
 
     /* Stack the split layout vertically */
     .split-section-container,
     .split-section-container.reverse-layout {
-        flex-direction: column-reverse; /* Usually image on top, text below */
+        flex-direction: column-reverse;
+        /* Usually image on top, text below */
         gap: 3rem;
     }
-    
+
     .section-image-column {
         min-height: 400px;
     }
@@ -1951,20 +1992,20 @@ body {
 
 @media (max-width: 768px) {
     .page-hero {
-        height: 100vh; 
+        height: 100vh;
     }
-    
+
     .panel-header h2 {
         font-size: 2rem;
     }
-    
+
     .cta-button {
         width: 100%;
         padding: 16px 10px;
     }
-    
+
     .fullscreen-product-container {
-        padding-left: 1.5rem; 
+        padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
 
