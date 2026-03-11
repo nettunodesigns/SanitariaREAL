@@ -1289,6 +1289,27 @@ a {
     gap: 1.5rem;
 }
 
+.footer-map {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Set a contained height for the map so it doesn't overpower the footer */
+    height: 200px; 
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+}
+
+.footer-map iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+    /* Optional: very subtle CSS filter to blend Google Maps into dark mode 
+       Note: standard Maps embed is bright white, this tempers it slightly */
+    filter: contrast(0.9) brightness(0.9);
+}
+
 .footer-logo {
     height: 50px;
     width: auto;
