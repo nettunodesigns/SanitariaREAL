@@ -503,6 +503,7 @@ a {
     -webkit-text-fill-color: transparent;
 }
 
+
 /* Statement Section */
 .statement-section {
     width: 100%;
@@ -624,6 +625,8 @@ a {
     align-items: center;
     height: 410px;
     flex-shrink: 0;
+    /* Prevent default black/grey tap flash on mobile */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .brand-item img {
@@ -637,11 +640,17 @@ a {
     filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
     opacity: 0.8;
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Prevent image selection/highlight dragging on mobile */
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-.brand-item:hover img {
-    opacity: 1;
-    transform: scale(1.1);
+/* Restrict hover effects ONLY to mouse/pointer devices to prevent "stuck" hovers on touch */
+@media (hover: hover) and (pointer: fine) {
+    .brand-item:hover img {
+        opacity: 1;
+        transform: scale(1.1);
+    }
 }
 
 @keyframes scroll-left-to-right {
@@ -745,7 +754,7 @@ a {
 
     html,
     body {
-        overflow-x: hidden;
+        overflow-x: clip;
     }
 
     .navbar {
@@ -1574,7 +1583,7 @@ a {
 /* Base App Layout */
 body {
     position: relative;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* -----------------------------------------
@@ -1705,10 +1714,8 @@ body {
 ------------------------------------------ */
 .fullscreen-product-container {
     width: 100%;
-    /* Let the content stretch wider. The scrolling index will sit on top of images/text safely thanks to its dark gradient. */
-    padding-left: 5%;
-    padding-right: 5%;
     margin-bottom: 0;
+    /* Removed padding here so backgrounds can stretch edge-to-edge */
 }
 
 .fullscreen-section {
@@ -1720,6 +1727,68 @@ body {
     justify-content: center;
     padding: 6rem 0;
     position: relative;
+    /* Optional: overflow:hidden to contain any animations/gradients within the full width */
+    overflow: hidden;
+}
+
+/* Shared Animated Background Properties */
+.step-section {
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Individual Section Animated Gradients (Brand Palette: Greens, Darks, subtle Red/White) */
+#magnetoterapia {
+    background: linear-gradient(135deg, #121212, #1f3627, #122118, #264a34);
+}
+
+#elettrostimolatori {
+    /* Silver/Gray tones mixed with very dark green */
+    background: linear-gradient(135deg, #1a1c1a, #2b302c, #111412, #4a544d);
+}
+
+#pressoterapia {
+    /* Stronger presence of the brand red mixed with charcoal */
+    background: linear-gradient(135deg, #1f1414, #3a1515, #120e0e, #5c1b1b);
+}
+
+#ultrasuoni {
+    /* Pure dark mode with a very subtle soft green center */
+    background: linear-gradient(135deg, #0a0a0a, #151a17, #050505, #222b26);
+}
+
+#kinetec {
+    /* Moving towards lighter grey-whites */
+    background: linear-gradient(135deg, #1f2421, #3c453f, #151816, #596b60);
+}
+
+#pedaliere {
+    /* Classic brand green but with high contrast darks */
+    background: linear-gradient(135deg, #0f1c13, #1e3d28, #080d0a, #2c593a);
+}
+
+#ecg {
+    /* Warm off-white/beige mixed into dark grays */
+    background: linear-gradient(135deg, #1e1e1a, #424239, #141412, #6b6b5c);
+}
+
+#pressione {
+    /* The most vibrant green shift to end the sections */
+    background: linear-gradient(135deg, #142b1e, #29573c, #0d1a12, #3c8259);
 }
 
 /* Subtle separator between full sections */
@@ -1746,8 +1815,13 @@ body {
     justify-content: space-between;
     width: 100%;
     max-width: 1400px;
-    /* Cap width for extreme ultra-wide monitors */
     gap: 4rem;
+
+    /* Move the safe area padding HERE so the background behind it can go full width */
+    padding-left: 5%;
+    padding-right: 5%;
+    /* Optionally, keep it centered within the max-width */
+    margin: 0 auto;
 }
 
 /* Reverse class to alternate Image/Text positions */
@@ -1774,27 +1848,105 @@ body {
     min-height: 500px;
 }
 
-/* Placeholder for Images */
+/* Placeholder for Images - 21st dev Animated Magic Border */
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+@keyframes magic-border-spin {
+    to {
+        --border-angle: 1turn;
+    }
+}
+
 .image-placeholder {
     width: 100%;
     height: 100%;
     min-height: 500px;
     background: rgba(255, 255, 255, 0.02);
-    border: 2px dashed rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-ui);
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
     text-align: center;
     padding: 2rem;
-    transition: border-color 0.4s ease;
+    position: relative;
+    /* Default animated border color */
+    --border-color: #ffffff;
 }
 
-.split-section-container:hover .image-placeholder {
-    border-color: rgba(255, 255, 255, 0.3);
+/* The magic glowing border layer */
+.image-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    /* Border thickness */
+    background: conic-gradient(from var(--border-angle),
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.08) 10%,
+            var(--border-color) 25%,
+            rgba(255, 255, 255, 0.08) 40%,
+            rgba(255, 255, 255, 0.08) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: magic-border-spin 8s linear infinite;
 }
+
+.split-section-container:hover .image-placeholder::before {
+    /* Optional: slightly speed up on hover */
+    animation-duration: 5s;
+}
+
+/* Magic Border Color Overrides tuned for each section's specific background gradient */
+#magnetoterapia .image-placeholder {
+    --border-color: #4ade80;
+}
+
+/* Neon Green */
+#elettrostimolatori .image-placeholder {
+    --border-color: #a1a1aa;
+}
+
+/* Silver/Zinc */
+#pressoterapia .image-placeholder {
+    --border-color: #f87171;
+}
+
+/* Glowing Red */
+#ultrasuoni .image-placeholder {
+    --border-color: #86efac;
+}
+
+/* Soft Bio-Green */
+#kinetec .image-placeholder {
+    --border-color: #cbd5e1;
+}
+
+/* Slate/Blue-Grey */
+#pedaliere .image-placeholder {
+    --border-color: #22c55e;
+}
+
+/* Vibrant Brand Green */
+#ecg .image-placeholder {
+    --border-color: #fef08a;
+}
+
+/* Warm Beige/Gold */
+#pressione .image-placeholder {
+    --border-color: #10b981;
+}
+
+/* Deep Emerald */
 
 .text-muted {
     opacity: 0.5;
@@ -1894,12 +2046,10 @@ body {
 /* RESPONSIVE DESIGN FOR 100VH LAYOUT */
 
 @media (max-width: 1200px) {
-    .fullscreen-product-container {
+    .split-section-container {
         padding-left: 15%;
         /* Push content out from the bare index line */
-    }
-
-    .split-section-container {
+        padding-right: 5%;
         gap: 2rem;
     }
 }
@@ -1966,7 +2116,7 @@ body {
         padding-left: 0;
     }
 
-    .fullscreen-product-container {
+    .split-section-container {
         padding-left: 2rem;
         padding-right: 2rem;
     }
@@ -2004,7 +2154,7 @@ body {
         padding: 16px 10px;
     }
 
-    .fullscreen-product-container {
+    .split-section-container {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
