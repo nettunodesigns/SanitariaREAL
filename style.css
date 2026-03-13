@@ -1296,8 +1296,8 @@ a {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
     /* Set a contained height for the map so it doesn't overpower the footer */
-    height: 200px; 
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+    height: 200px;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
 }
 
 .footer-map iframe {
@@ -1634,7 +1634,8 @@ body {
     position: fixed;
     top: 50%;
     left: 0;
-    transform: translateY(-50%) translateX(-100%); /* Hidden off-screen left by default */
+    transform: translateY(-50%) translateX(-100%);
+    /* Hidden off-screen left by default */
     width: 48px;
     height: 80px;
     background: var(--glass-bg);
@@ -1666,7 +1667,8 @@ body {
 .sticky-bare-index {
     position: fixed;
     top: 0;
-    left: -400px; /* Hide off canvas */
+    left: -400px;
+    /* Hide off canvas */
     height: 100vh;
     width: 350px;
     display: flex;
@@ -1967,10 +1969,7 @@ body {
     animation: magic-border-spin 8s linear infinite;
 }
 
-.split-section-container:hover .image-placeholder::before {
-    /* Optional: slightly speed up on hover */
-    animation-duration: 5s;
-}
+
 
 /* Magic Border Color Overrides tuned for each section's specific background gradient */
 #magnetoterapia .image-placeholder {
@@ -2126,7 +2125,7 @@ body {
     .index-toggle {
         /* Hidden off-screen top by default.
            Instead of transform translation, just push `top` securely off screen. */
-        top: -50px; 
+        top: -50px;
         left: 50%;
         transform: translateX(-50%);
         width: 80px;
@@ -2140,11 +2139,11 @@ body {
 
     .index-toggle.is-visible {
         /* Force a 1px overlap (84px instead of 85px) to visually 'seat' the toggle exactly behind the header's glass border */
-        top: 84px; 
+        top: 84px;
         /* MUST override the desktop .is-visible transform that does translateY(-50%) translateX(0) */
         transform: translateX(-50%);
     }
-    
+
     .index-toggle:hover {
         width: 80px;
         height: 44px;
@@ -2152,12 +2151,13 @@ body {
 
     .sticky-bare-index {
         position: fixed;
-        top: -100%; /* Hide above */
+        top: -100%;
+        /* Hide above */
         left: 0;
         width: 100%;
         height: auto;
         /* Adjust padding to account for navbar height and toggle button so items aren't obscured */
-        padding: 7.5rem 1rem 2rem 1rem; 
+        padding: 7.5rem 1rem 2rem 1rem;
         z-index: 48;
         background: rgba(18, 18, 18, 0.98);
         backdrop-filter: blur(20px);
@@ -2179,13 +2179,15 @@ body {
         padding: 0 1rem;
         align-items: center;
     }
-    
+
     .bare-index-list::before {
-        display: none; /* Hide vertical track line */
+        display: none;
+        /* Hide vertical track line */
     }
-    
+
     .bare-index-list a {
-        padding-left: 0; /* Remove padding */
+        padding-left: 0;
+        /* Remove padding */
         text-align: center;
         width: 100%;
         justify-content: center;
@@ -2270,9 +2272,10 @@ body {
 
 /* Ensure mobile rules for index-toggle properly cascade under 480px */
 @media (max-width: 480px) {
+
     /* The header height shrinks by ~10px on small screens due to logo height */
     .index-toggle.is-visible {
         /* Force a 1px overlap (74px instead of 75px) to remove any visual gap between the glass borders */
-        top: 74px; 
+        top: 74px;
     }
 }

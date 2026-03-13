@@ -21,22 +21,20 @@
             scroll-behavior: smooth;
         }
 
-        /* Guided Scroll Snapping (Desktop Only) */
-        @media (min-width: 1025px) {
-            html {
-                scroll-snap-type: y mandatory;
-            }
+        /* Guided Scroll Sections Setup */
+        .fullscreen-hero,
+        .fullscreen-section {
+            height: 100vh;
+            /* Keep exact height for calculations */
+        }
+
+        /* Mobile adjustment */
+        @media (max-width: 1024px) {
 
             .fullscreen-hero,
             .fullscreen-section {
-                scroll-snap-align: start;
-                /* Prevent scrolling past multiple sections quickly */
-                scroll-snap-stop: always;
-            }
-
-            .site-footer {
-                /* Snap bottom of the footer to the bottom of the viewport */
-                scroll-snap-align: end;
+                height: auto;
+                min-height: 100vh;
             }
         }
     </style>
@@ -451,6 +449,7 @@
     <!-- Scripts -->
     <!-- Scroll Animations Base -->
     <script src="components/scroll-animations.js"></script>
+    <script src="components/smooth-scroll-guide.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // General Mobile Toggle
