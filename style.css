@@ -1608,36 +1608,81 @@ body {
 }
 
 /* -----------------------------------------
-   STICKY BARE INDEX (Vertical Line)
+   STICKY BARE INDEX (Off-canvas Menu)
 ------------------------------------------ */
-.sticky-bare-index {
+.index-overlay {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 45;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.index-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.index-toggle {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) translateX(-100%); /* Hidden off-screen left by default */
+    width: 48px;
+    height: 80px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-left: none;
+    border-radius: 0 40px 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    z-index: 55;
+    cursor: pointer;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    /* Transition transform to slide it in when visible */
+    transition: width 0.3s ease, background 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.index-toggle.is-visible {
+    transform: translateY(-50%) translateX(0);
+}
+
+.index-toggle:hover {
+    width: 54px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sticky-bare-index {
+    position: fixed;
+    top: 0;
+    left: -400px; /* Hide off canvas */
     height: 100vh;
     width: 350px;
-    /* Width of the shadow gradient */
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 3%;
-    /* Text distance from the extreme left edge */
     z-index: 50;
 
     /* Dark shade covering the whole side to ensure contrast */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 100%);
+    background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(18, 18, 18, 0.9) 70%, transparent 100%);
 
-    /* Hidden by default, only shown while scrolling via JS */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    pointer-events: none;
+    transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.sticky-bare-index.is-visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+.sticky-bare-index.open {
+    left: 0;
 }
 
 .bare-index-list {
@@ -2077,35 +2122,73 @@ body {
 
 @media (max-width: 1024px) {
 
-    /* Tablet Portrait: Move sticky line index to TOP as horizontal scroller */
+    /* Tablet Portrait: Move sticky line index off-canvas TOP */
+    .index-toggle {
+        /* Hidden off-screen top by default.
+           Instead of transform translation, just push `top` securely off screen. */
+        top: -50px; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 36px;
+        border: 1px solid var(--glass-border);
+        border-top: none;
+        border-radius: 0 0 40px 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: width 0.3s ease, background 0.3s ease, top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .index-toggle.is-visible {
+        /* Force a 1px overlap (84px instead of 85px) to visually 'seat' the toggle exactly behind the header's glass border */
+        top: 84px; 
+        /* MUST override the desktop .is-visible transform that does translateY(-50%) translateX(0) */
+        transform: translateX(-50%);
+    }
+    
+    .index-toggle:hover {
+        width: 80px;
+        height: 44px;
+    }
+
     .sticky-bare-index {
-        position: sticky;
-        top: 80px;
-        /* Under navbar */
+        position: fixed;
+        top: -100%; /* Hide above */
         left: 0;
         width: 100%;
         height: auto;
-        /* Remove 100vh constraint */
-        display: block;
-        /* Remove flex column */
-        transform: none;
-        padding: 1rem 0;
-        z-index: 45;
-        /* Under navbar */
-        background: rgba(18, 18, 18, 0.9);
-        /* Solid opaque background */
-        backdrop-filter: blur(10px);
+        /* Adjust padding to account for navbar height and toggle button so items aren't obscured */
+        padding: 7.5rem 1rem 2rem 1rem; 
+        z-index: 48;
+        background: rgba(18, 18, 18, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        /* Keep it permanently visible on tablet/mobile if needed, or JS will handle it */
+        transition: top 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        display: block;
+        transform: none;
+    }
+
+    .sticky-bare-index.open {
+        top: 0;
     }
 
     .bare-index-list {
-        flex-direction: row;
-        overflow-x: auto;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        gap: 2rem;
-        padding: 0 1rem 5px 1rem;
+        flex-direction: column;
+        overflow-x: hidden;
+        gap: 1.5rem;
+        padding: 0 1rem;
+        align-items: center;
+    }
+    
+    .bare-index-list::before {
+        display: none; /* Hide vertical track line */
+    }
+    
+    .bare-index-list a {
+        padding-left: 0; /* Remove padding */
+        text-align: center;
+        width: 100%;
+        justify-content: center;
     }
 
     .bare-index-list::-webkit-scrollbar {
@@ -2182,5 +2265,14 @@ body {
 
     .section-image-column {
         min-height: 300px;
+    }
+}
+
+/* Ensure mobile rules for index-toggle properly cascade under 480px */
+@media (max-width: 480px) {
+    /* The header height shrinks by ~10px on small screens due to logo height */
+    .index-toggle.is-visible {
+        /* Force a 1px overlap (74px instead of 75px) to remove any visual gap between the glass borders */
+        top: 74px; 
     }
 }
