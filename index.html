@@ -373,52 +373,7 @@
         </div>
     </footer>
 
-    <script src="components/animated-grid.js"></script>
-    <script src="components/testimonials-carousel.js"></script>
-    <script src="components/text-reveal.js"></script>
-    <script src="components/scroll-animations.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Animated Grid
-            if (window.AnimatedGridPattern) {
-                new AnimatedGridPattern('grid-pattern-container', {
-                    numSquares: 80,
-                    maxOpacity: 0.2,
-                    duration: 3,
-                    strokeColor: "rgba(223, 233, 215, 0.4)", // Brighter light green lines
-                    fillColor: "rgba(223, 233, 215, 1)" // Solid light green
-                });
-            }
-
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            const navbar = document.querySelector('.navbar');
-            const dropdownTrigger = document.querySelector('.dropdown-trigger');
-
-            mobileToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                mobileToggle.classList.toggle('active');
-            });
-
-            // Handle Mobile Accordion Dropdown
-            dropdownTrigger.addEventListener('click', (e) => {
-                // If it's a mobile screen (where navLinks has the active class functionality)
-                if (window.innerWidth <= 768) {
-                    e.preventDefault(); // Prevent jump to # anchor
-                    dropdownTrigger.parentElement.classList.toggle('dropdown-open');
-                }
-            });
-
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-        });
-    </script>
+    <script type="module" src="/main.js"></script>
 </body>
 
 </html>

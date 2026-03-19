@@ -121,4 +121,4 @@ class AnimatedGridPattern {
         }, initialDelay);
     }
 }
-window.AnimatedGridPattern = AnimatedGridPattern;
+export default AnimatedGridPattern;
