@@ -48,7 +48,11 @@
       "Bash(powershell -Command \"Test-Path ''C:\\\\Users\\\\chris\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\8826666a-684f-4e9a-bab0-0ffa63c4b7ec\\\\1c6c5a52-af0e-4d91-8e51-578f4753cd90\\\\skills\\\\vite-motion-setup\\\\evals\\\\files\\\\fresh-vanilla-project\\\\index.html''\")",
       "Bash(\"$SKILL_DIR/test2.txt\")",
       "Read(//c/Users/chris/Desktop/MammaSuAntiGrav/$SKILL_DIR/**)",
-      "Bash(powershell -Command \"Test-Path ''C:\\\\Users\\\\chris\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\8826666a-684f-4e9a-bab0-0ffa63c4b7ec\\\\1c6c5a52-af0e-4d91-8e51-578f4753cd90\\\\skills\\\\vite-motion-setup\\\\test2.txt''\")"
+      "Bash(powershell -Command \"Test-Path ''C:\\\\Users\\\\chris\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\8826666a-684f-4e9a-bab0-0ffa63c4b7ec\\\\1c6c5a52-af0e-4d91-8e51-578f4753cd90\\\\skills\\\\vite-motion-setup\\\\test2.txt''\")",
+      "Bash(powershell -Command 'Write-Host $env:OneDrive')",
+      "Read(//c/Users/chris/OneDrive/claude-config/**)",
+      "Bash(powershell -Command \"Get-ChildItem -Path ''''C:\\\\Users\\\\chris\\\\.claude'''' -Recurse | Sort-Object LastWriteTime -Descending | Select-Object -First 5 FullName, LastWriteTime\")",
+      "Bash(powershell -Command \"ls -Force ''''C:\\\\Users\\\\chris\\\\.claude.json'''' | Select-Object LastWriteTime\")"
     ]
   }
 }
