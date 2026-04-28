@@ -2089,16 +2089,17 @@ body {
 }
 
 .primary-cta {
-    background: var(--color-deep-green);
+    background: rgba(255, 255, 255, 0.07);
     color: var(--color-white);
-    border: 1px solid var(--color-soft-green);
-    box-shadow: 0 4px 15px rgba(34, 57, 43, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
 }
 
 .primary-cta:hover {
-    background: var(--color-soft-green);
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.75);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(82, 144, 109, 0.5);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
 }
 
 .secondary-cta {
@@ -2281,5 +2282,332 @@ body {
     .index-toggle.is-visible {
         /* Force a 1px overlap (74px instead of 75px) to remove any visual gap between the glass borders */
         top: 74px;
+    }
+}
+
+/* Accordion items as links */
+a.accordion-item {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* =============================================
+   ORTOPEDICI PAGE - Navy / Steel / Indigo Palette
+   ============================================= */
+/* A - Deep Navy (pure cold dark blue) */
+#busti {
+    background: linear-gradient(135deg, #07091a, #0e1838, #040508, #162050);
+}
+#tutori {
+    background: linear-gradient(135deg, #07091a, #0e1838, #040508, #162050);
+}
+#diagnostici {
+    background: linear-gradient(135deg, #07091a, #0e1838, #040508, #162050);
+}
+
+/* B - Steel Blue (gray-blue, clearly lighter/desaturated) */
+#ginocchiere {
+    background: linear-gradient(135deg, #0c1824, #1c3044, #08100e, #2c4860);
+}
+#plantari {
+    background: linear-gradient(135deg, #0c1824, #1c3044, #08100e, #2c4860);
+}
+#traverse {
+    background: linear-gradient(135deg, #0c1824, #1c3044, #08100e, #2c4860);
+}
+
+/* C - Deep Indigo (clear purple shift) */
+#calze {
+    background: linear-gradient(135deg, #0c0a22, #201a50, #06050e, #302878);
+}
+#piedi {
+    background: linear-gradient(135deg, #0c0a22, #201a50, #06050e, #302878);
+}
+
+/* Magic Border - Ortopedici */
+#busti .image-placeholder { --border-color: #3b82f6; }
+#tutori .image-placeholder { --border-color: #3b82f6; }
+#diagnostici .image-placeholder { --border-color: #3b82f6; }
+#ginocchiere .image-placeholder { --border-color: #7dd3fc; }
+#plantari .image-placeholder { --border-color: #7dd3fc; }
+#traverse .image-placeholder { --border-color: #7dd3fc; }
+#calze .image-placeholder { --border-color: #818cf8; }
+#piedi .image-placeholder { --border-color: #818cf8; }
+
+/* =============================================
+   AUSILI PAGE - Olive / Military Green + Gold
+   ============================================= */
+/* A - Dark Olive */
+#materassi {
+    background: linear-gradient(135deg, #0c1008, #1c2a14, #080c04, #2c4018);
+}
+#sedie {
+    background: linear-gradient(135deg, #0c1008, #1c2a14, #080c04, #2c4018);
+}
+#abbigliamento {
+    background: linear-gradient(135deg, #0c1008, #1c2a14, #080c04, #2c4018);
+}
+
+/* B - Military Green (deeper, cooler) */
+#deambulatori {
+    background: linear-gradient(135deg, #0a1206, #1a2e0e, #060c03, #283c18);
+}
+#stampelle {
+    background: linear-gradient(135deg, #0a1206, #1a2e0e, #060c03, #283c18);
+}
+#prodotti-igienici {
+    background: linear-gradient(135deg, #0a1206, #1a2e0e, #060c03, #283c18);
+}
+
+/* C - Sage / Khaki (warmer, slightly lighter) */
+#carrozzine {
+    background: linear-gradient(135deg, #101408, #262e10, #0c0c04, #3c4420);
+}
+#sponde {
+    background: linear-gradient(135deg, #101408, #262e10, #0c0c04, #3c4420);
+}
+
+/* Magic Border - Ausili */
+#materassi .image-placeholder { --border-color: #d4a027; }
+#sedie .image-placeholder { --border-color: #d4a027; }
+#abbigliamento .image-placeholder { --border-color: #d4a027; }
+#deambulatori .image-placeholder { --border-color: #84cc16; }
+#stampelle .image-placeholder { --border-color: #84cc16; }
+#prodotti-igienici .image-placeholder { --border-color: #84cc16; }
+#carrozzine .image-placeholder { --border-color: #e8b84b; }
+#sponde .image-placeholder { --border-color: #e8b84b; }
+
+/* =============================================
+   CUSCINI PAGE - Teal-Green / Cyan / Blue-Teal
+   ============================================= */
+/* A - Teal-Green (warm, green-leaning) */
+#alzagambe {
+    background: linear-gradient(135deg, #061612, #10301e, #040c08, #1c4430);
+}
+#antidecubito {
+    background: linear-gradient(135deg, #061612, #10301e, #040c08, #1c4430);
+}
+#carrozzine-cuscini {
+    background: linear-gradient(135deg, #061612, #10301e, #040c08, #1c4430);
+}
+
+/* B - Cool Cyan-Teal (classic teal, cyan-shifted) */
+#memory {
+    background: linear-gradient(135deg, #061618, #0e3034, #040a0c, #184848);
+}
+#prostata {
+    background: linear-gradient(135deg, #061618, #0e3034, #040a0c, #184848);
+}
+#coprimaterassi {
+    background: linear-gradient(135deg, #061618, #0e3034, #040a0c, #184848);
+}
+
+/* C - Blue-Teal (slate-blue shift, darker) */
+#divaricatori {
+    background: linear-gradient(135deg, #060e1a, #102232, #04080e, #1a344e);
+}
+#emorroidi {
+    background: linear-gradient(135deg, #060e1a, #102232, #04080e, #1a344e);
+}
+#lettino {
+    background: linear-gradient(135deg, #060e1a, #102232, #04080e, #1a344e);
+}
+
+/* Magic Border - Cuscini */
+#alzagambe .image-placeholder { --border-color: #34d399; }
+#antidecubito .image-placeholder { --border-color: #34d399; }
+#carrozzine-cuscini .image-placeholder { --border-color: #34d399; }
+#memory .image-placeholder { --border-color: #22d3ee; }
+#prostata .image-placeholder { --border-color: #22d3ee; }
+#coprimaterassi .image-placeholder { --border-color: #22d3ee; }
+#divaricatori .image-placeholder { --border-color: #38bdf8; }
+#emorroidi .image-placeholder { --border-color: #38bdf8; }
+#lettino .image-placeholder { --border-color: #38bdf8; }
+
+/* =============================================
+   CREME PAGE - Rose / Mauve Palette
+   ============================================= */
+#arnica {
+    background: linear-gradient(135deg, #1a0c0e, #38181e, #120808, #58242a);
+}
+#detergenti {
+    background: linear-gradient(135deg, #1a0c16, #38182e, #120810, #582040);
+}
+#artiglio {
+    background: linear-gradient(135deg, #12101a, #242038, #0e0c12, #3a3458);
+}
+#collagene {
+    background: linear-gradient(135deg, #1a0c0e, #38181e, #120808, #58242a);
+}
+
+/* Magic Border - Creme */
+#arnica .image-placeholder { --border-color: #fb7185; }
+#detergenti .image-placeholder { --border-color: #e879f9; }
+#artiglio .image-placeholder { --border-color: #a78bfa; }
+#collagene .image-placeholder { --border-color: #fb7185; }
+
+/* =============================================
+   CONTATTI PAGE - Monochrome Charcoal / Slate
+   ============================================= */
+#telefono {
+    background: linear-gradient(135deg, #0a0c10, #181c24, #06080c, #28303c);
+}
+#email {
+    background: linear-gradient(135deg, #0c0a08, #201c18, #060504, #322c26);
+}
+#sede {
+    background: linear-gradient(135deg, #0a0e16, #1a2230, #05070c, #2a3648);
+}
+#orari {
+    background: linear-gradient(135deg, #08080a, #181820, #050506, #28282e);
+}
+
+/* Magic Border - Contatti (white tones for premium feel) */
+#telefono .image-placeholder { --border-color: #e2e8f0; }
+#email .image-placeholder { --border-color: #fef3c7; }
+#sede .image-placeholder { --border-color: #dbeafe; }
+#orari .image-placeholder { --border-color: #ffffff; }
+
+/* Contatti hero background — pure CSS gradient (no product image) */
+.page-hero-bg--contatti {
+    background: radial-gradient(ellipse at top, #1a1e26 0%, #0a0c10 55%, #050608 100%);
+    filter: none;
+}
+
+/* Contact display panels (replace placeholder text with rich content) */
+.image-placeholder.contact-display {
+    padding: 2.5rem 2rem;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    color: var(--color-white);
+}
+
+.contact-display-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-label {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.contact-label:first-child {
+    margin-top: 0;
+}
+
+.contact-value {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    color: var(--color-white);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    word-break: break-word;
+    line-height: 1.05;
+    display: inline-block;
+}
+
+.contact-value--email {
+    font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+    letter-spacing: 0.5px;
+}
+
+.contact-value--small {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+a.contact-value:hover {
+    color: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+/* Map embed inside placeholder (Sede section) */
+.image-placeholder.map-display {
+    padding: 0;
+    overflow: hidden;
+}
+
+.image-placeholder.map-display iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    filter: invert(0.92) hue-rotate(180deg) saturate(0.7);
+}
+
+/* Schedule table inside placeholder (Orari section) */
+.image-placeholder.schedule-display {
+    padding: 2rem 2.5rem;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--color-white);
+    font-family: var(--font-ui);
+}
+
+.schedule-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.schedule-table tr:last-child {
+    border-bottom: none;
+}
+
+.schedule-table td {
+    padding: 0.95rem 0.5rem;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.schedule-table .day {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.95);
+    white-space: nowrap;
+}
+
+.schedule-table .hours {
+    text-align: right;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.88rem;
+    letter-spacing: 0.3px;
+}
+
+.schedule-table tr.closed .hours {
+    color: rgba(248, 113, 113, 0.65);
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+@media (max-width: 768px) {
+    .image-placeholder.contact-display {
+        padding: 2rem 1.5rem;
+    }
+    .image-placeholder.schedule-display {
+        padding: 1.5rem 1rem;
+    }
+    .schedule-table .day {
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+    }
+    .schedule-table .hours {
+        font-size: 0.78rem;
     }
 }

@@ -4,21 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prodotti Elettromedicali - Sanitaria Croce</title>
-    <!-- Google Fonts for Modern Typography -->
+    <title>Ausili - Sanitaria Croce</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Playfair+Display:ital,wght@1,600&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Anton Font for specific sections -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-    <!-- Consistent Navbar -->
+    <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
             <a href="index.html">
@@ -60,22 +57,22 @@
         </div>
     </header>
 
-    <!-- Page Specific Hero (100vh) -->
+    <!-- Page Hero -->
     <section class="page-hero fullscreen-hero" id="hero">
         <div class="page-hero-bg"
-            style="background-image: url('sources/Image_Product_Section/cat_elettromedicali_1772653439952.png');"></div>
+            style="background-image: url('sources/Image_Product_Section/cat_ausili_1772653454470.png');"></div>
         <div class="page-hero-overlay"></div>
         <div class="page-hero-content animate-on-scroll fade-up">
-            <h1 class="page-title" style="margin-bottom: 0;">PRODOTTI<br>ELETTROMEDICALI</h1>
+            <h1 class="page-title" style="margin-bottom: 0;">AUSILI</h1>
             <p class="hero-subheadline"
                 style="max-width: 800px; margin: 1.5rem auto 0; font-family: var(--font-ui); font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.9); font-weight: 400; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                Sanitaria Croce offre una vasta gamma di prodotti elettromedicali, disponibili sia per la vendita che
-                per il noleggio. La nostra selezione include apparecchiature avanzate progettate per migliorare la
-                qualità della vita dei nostri Clienti, supportando diverse esigenze terapeutiche e riabilitative.</p>
+                Sanitaria Croce offre un servizio completo di ausili per la disabilità e la terza età, disponibili
+                in vendita, a noleggio e con consegna a domicilio. Garantiamo soluzioni di qualità per l'autonomia,
+                la sicurezza e il benessere del paziente e dei caregiver.</p>
         </div>
     </section>
 
-    <!-- STICKY BARE INDEX (Off-canvas Menu) -->
+    <!-- Sticky Index -->
     <div id="index-overlay" class="index-overlay"></div>
     <button id="index-toggle" class="index-toggle" aria-label="Toggle Index">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -90,71 +87,63 @@
     </button>
     <aside class="sticky-bare-index hidden" id="scroll-spy-menu">
         <ul class="bare-index-list">
-            <li><a href="#magnetoterapia" data-target="magnetoterapia"><span class="index-number">01</span>
-                    Magnetoterapia</a></li>
-            <li><a href="#elettrostimolatori" data-target="elettrostimolatori"><span class="index-number">02</span>
-                    Elettrostimolatori e TENS</a></li>
-            <li><a href="#pressoterapia" data-target="pressoterapia"><span class="index-number">03</span>
-                    Pressoterapia</a></li>
-            <li><a href="#ultrasuoni" data-target="ultrasuoni"><span class="index-number">04</span> Ultrasuoni</a></li>
-            <li><a href="#kinetec" data-target="kinetec"><span class="index-number">05</span> Kinetec Info</a></li>
-            <li><a href="#pedaliere" data-target="pedaliere"><span class="index-number">06</span> Pedaliere Moretti</a>
-            </li>
-            <li><a href="#ecg" data-target="ecg"><span class="index-number">07</span> Elettrocardiografi ECG</a></li>
-            <li><a href="#pressione" data-target="pressione"><span class="index-number">08</span> Misuratori
-                    Pressione</a></li>
+            <li><a href="#materassi" data-target="materassi"><span class="index-number">01</span> Materassi Antidecubito</a></li>
+            <li><a href="#deambulatori" data-target="deambulatori"><span class="index-number">02</span> Deambulatori</a></li>
+            <li><a href="#carrozzine" data-target="carrozzine"><span class="index-number">03</span> Carrozzine</a></li>
+            <li><a href="#sedie" data-target="sedie"><span class="index-number">04</span> Sedie Comode & Ausili</a></li>
+            <li><a href="#stampelle" data-target="stampelle"><span class="index-number">05</span> Stampelle & Bastoni</a></li>
+            <li><a href="#sponde" data-target="sponde"><span class="index-number">06</span> Sponde & Accessori Letto</a></li>
+            <li><a href="#abbigliamento" data-target="abbigliamento"><span class="index-number">07</span> Abbigliamento per Degenza</a></li>
+            <li><a href="#prodotti-igienici" data-target="prodotti-igienici"><span class="index-number">08</span> Prodotti Igienici</a></li>
         </ul>
     </aside>
 
-    <!-- FULLSCREEN PRODUCT SECTIONS (SPLIT LAYOUT) -->
+    <!-- Product Sections -->
     <main class="fullscreen-product-container">
 
-        <!-- 1. MAGNETOTERAPIA -->
-        <section id="magnetoterapia" class="fullscreen-section step-section">
+        <!-- 1. MATERASSI ANTIDECUBITO -->
+        <section id="materassi" class="fullscreen-section step-section">
             <div class="split-section-container">
                 <div class="section-content-column animate-on-scroll fade-right">
                     <div class="panel-header">
-                        <h2>MAGNETOTERAPIA</h2>
-                        <span class="availability-tag">Vendita e Noleggio</span>
+                        <h2>MATERASSI ANTIDECUBITO</h2>
+                        <span class="availability-tag highlight-tag">Vendita e Noleggio</span>
                     </div>
                     <div class="panel-content">
-                        <p>La magnetoterapia è una tecnica terapeutica non invasiva che utilizza campi magnetici a bassa
-                            frequenza per promuovere la rigenerazione dei tessuti e alleviare il dolore in modo
-                            naturale.</p>
-                        <p>Agisce stimolando l'energia cellulare del corpo, potenziando la circolazione sanguigna locale
-                            e migliorando drasticamente l'ossigenazione dei tessuti. È particolarmente indicata e
-                            ampiamente prescritta nel trattamento del consolidamento di fratture ossee, stati
-                            infiammatori acuti e cronici, artriti, artrosi e svariati dolori muscolari e articolari.</p>
+                        <p>Materassi a pressione alternata e a bolle d'aria progettati specificamente per la
+                            prevenzione e il trattamento delle lesioni da pressione nei pazienti allettati. Garantiscono
+                            un'uniforme distribuzione del peso corporeo, riducendo il rischio di piaghe da decubito.</p>
+                        <p>Disponibili in versione statica e dinamica (con pompa motorizzata), sono la soluzione
+                            clinicamente raccomandata per chiunque trascorra molte ore a letto. Il servizio di noleggio
+                            ti permette di averli subito, con consegna e ritiro a domicilio.</p>
                     </div>
                     <div class="panel-footer">
-                        <a href="index.html#contatti" class="cta-button primary-cta">Richiedi Informazioni</a>
+                        <a href="index.html#contatti" class="cta-button primary-cta">Prenota Noleggio</a>
                     </div>
                 </div>
-                <!-- IMAGE PLACEHOLDER -->
                 <div class="section-image-column animate-on-scroll fade-left">
                     <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: Magnetoterapia]
+                        [Placeholder Immagine: Materasso Antidecubito]
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2. ELETTROSTIMOLATORI E TENS -->
-        <section id="elettrostimolatori" class="fullscreen-section step-section">
-            <div class="split-section-container reverse-layout"> <!-- Alternate layout direction -->
+        <!-- 2. DEAMBULATORI VARI -->
+        <section id="deambulatori" class="fullscreen-section step-section">
+            <div class="split-section-container reverse-layout">
                 <div class="section-content-column animate-on-scroll fade-left">
                     <div class="panel-header">
-                        <h2>ELETTROSTIMOLATORI & TENS</h2>
+                        <h2>DEAMBULATORI VARI</h2>
                         <span class="availability-tag">Vendita e Noleggio</span>
                     </div>
                     <div class="panel-content">
-                        <p>Gli apparecchi per TENS (Transcutaneous Electrical Nerve Stimulation) ed elettrostimolazione
-                            neuromuscolare sono strumenti altamente efficaci per il trattamento mirato sul corpo
-                            attraverso micro-impulsi elettrici.</p>
-                        <p>Mentre gli elettrostimolatori classici sono programmati per rafforzare, rassodare e
-                            riabilitare le fibre muscolari (molto utilizzati in fase post-infortunio), i dispositivi
-                            TENS sono eccellenti alleati per il blocco e il controllo del dolore (terapia antalgica)
-                            senza l'utilizzo di farmaci o controindicazioni sistemiche.</p>
+                        <p>Forniamo deambulatori a quattro ruote con freni e seduta incorporata, deambulatori fissi
+                            a tre o quattro appoggi, per supportare autonomia e sicurezza nella deambulazione di
+                            persone con ridotta mobilità o in fase di riabilitazione motoria.</p>
+                        <p>Strutture leggere in alluminio anodizzato, regolabili in altezza e pieghevoli per il
+                            trasporto, adatte a ogni contesto: dall'utilizzo domestico a quello esterno.
+                            Disponibili anche a noleggio per esigenze temporanee post-operatorie.</p>
                     </div>
                     <div class="panel-footer">
                         <a href="index.html#contatti" class="cta-button primary-cta">Richiedi Informazioni</a>
@@ -162,112 +151,167 @@
                 </div>
                 <div class="section-image-column animate-on-scroll fade-right">
                     <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: TENS e Elettrostimolatori]
+                        [Placeholder Immagine: Deambulatore]
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. PRESSOTERAPIA -->
-        <section id="pressoterapia" class="fullscreen-section step-section">
+        <!-- 3. CARROZZINE -->
+        <section id="carrozzine" class="fullscreen-section step-section">
             <div class="split-section-container">
                 <div class="section-content-column animate-on-scroll fade-right">
                     <div class="panel-header">
-                        <h2>PRESSOTERAPIA</h2>
+                        <h2>CARROZZINE</h2>
                         <span class="availability-tag">Vendita e Noleggio</span>
                     </div>
                     <div class="panel-content">
-                        <p>Offriamo avanzati sistemi di pressoterapia per l'uso domiciliare, un trattamento meccanico
-                            formidabile per migliorare intensamente il funzionamento del sistema circolatorio linfatico
-                            e venoso.</p>
-                        <p>La tecnica si avvale di un compressore elettronico intelligente collegato a particolari
-                            gambali o bracciali strutturati a camere d'aria. Gonfiandosi progressivamente dalla
-                            periferia verso il centro del corpo, esercitano un massaggio drenante formidabile contro
-                            ritenzione idrica, edemi, gambe pesanti e gonfiore cronico.</p>
+                        <p>Ampia selezione di carrozzine ad autospinta e da transito per rispondere alle più diverse
+                            esigenze di mobilità. Disponibili in versioni standard, pieghevoli e leggere in alluminio,
+                            con poggiapiedi regolabili e braccioli removibili per facilitare i trasferimenti.</p>
+                        <p>Il nostro servizio di noleggio carrozzine è pensato per esigenze temporanee: post-operatorio,
+                            viaggi, riabilitazione. La consegna a domicilio è disponibile su richiesta in tutta
+                            l'area metropolitana di Bologna.</p>
                     </div>
                     <div class="panel-footer">
-                        <a href="index.html#contatti" class="cta-button primary-cta">Noleggia Subito</a>
+                        <a href="index.html#contatti" class="cta-button primary-cta">Prenota Noleggio</a>
                     </div>
                 </div>
                 <div class="section-image-column animate-on-scroll fade-left">
                     <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: Pressoterapia]
+                        [Placeholder Immagine: Carrozzina]
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. TERAPIA AD ULTRASUONI -->
-        <section id="ultrasuoni" class="fullscreen-section step-section">
+        <!-- 4. SEDIE COMODE & AUSILI -->
+        <section id="sedie" class="fullscreen-section step-section">
             <div class="split-section-container reverse-layout">
                 <div class="section-content-column animate-on-scroll fade-left">
                     <div class="panel-header">
-                        <h2>TERAPIA AD ULTRASUONI</h2>
-                        <span class="availability-tag">Vendita e Noleggio</span>
-                    </div>
-                    <div class="panel-content">
-                        <p>Gli apparecchi per ultrasuonoterapia sono ampiamente riconosciuti per la loro superba azione
-                            profonda antinfiammatoria, termica e decontratturante sui tessuti molli.</p>
-                        <p>L'energia ultrasonica penetra nei tessuti provocando un micro-massaggio cellulare e una
-                            vasodilatazione termica, eccezionali per ridurre infiammazioni localizzate, sciogliere
-                            fastidiose contratture muscolari, trattare tendiniti, borsiti e favorire il riassorbimento
-                            di liquidi in eccesso ed ematomi.</p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="index.html#contatti" class="cta-button primary-cta">Noleggia Subito</a>
-                    </div>
-                </div>
-                <div class="section-image-column animate-on-scroll fade-right">
-                    <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: Ultrasuoni]
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. KINETEC INFO -->
-        <section id="kinetec" class="fullscreen-section step-section">
-            <div class="split-section-container">
-                <div class="section-content-column animate-on-scroll fade-right">
-                    <div class="panel-header">
-                        <h2>KINETEC INFO</h2>
-                        <span class="availability-tag highlight-tag">Focus Noleggio</span>
-                    </div>
-                    <div class="panel-content">
-                        <p>Il Kinetec è l'apparecchiatura d'elezione per la mobilizzazione passiva continua (CPM -
-                            Continuous Passive Motion) delle articolazioni, in particolare del ginocchio e dell'anca,
-                            direttamente a letto.</p>
-                        <p>Questa terapia meccanica domiciliare aiuta drasticamente a prevenire la rigidità tissutale da
-                            immobilizzazione, permette di recuperare dolcemente l'arco di mobilità articolare corretto e
-                            accelera la guarigione della cartilagine nei giorni immediatamente successivi a importanti
-                            interventi chirurgici.</p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="index.html#contatti" class="cta-button primary-cta">Prenota Kinetec</a>
-                    </div>
-                </div>
-                <div class="section-image-column animate-on-scroll fade-left">
-                    <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: Kinetec]
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. PEDALIERE / CYCLETTE MORETTI -->
-        <section id="pedaliere" class="fullscreen-section step-section">
-            <div class="split-section-container reverse-layout">
-                <div class="section-content-column animate-on-scroll fade-left">
-                    <div class="panel-header">
-                        <h2>PEDALIERE MORETTI</h2>
+                        <h2>SEDIE COMODE & AUSILI</h2>
                         <span class="availability-tag">In Vendita</span>
                     </div>
                     <div class="panel-content">
-                        <p>La linea riabilitativa Moretti comprende pedaliere e cyclette compatte, studiate
-                            specificamente volti per il mantenimento muscolare, l'esercizio cardiovascolare dolce e la
-                            fisioterapia degli arti inferiori e superiori comodamente seduti da casa o in poltrona.</p>
-                        <p>Strumenti robusti, sicuri e facilmente regolabili nella resistenza per accompagnare il
-                            paziente nel suo percorso di riattivazione motoria domestica.</p>
+                        <p>Sedie comode ergonomiche per degenti con braccioli anatomici e sistemi di regolazione
+                            dell'altezza, complete di accessori igienici rimovibili e lavabili. Ideali per garantire
+                            sicurezza e dignità nelle cure personali quotidiane di persone con ridotta mobilità.</p>
+                        <p>Completano la gamma gli ausili da bagno e WC: alzawater, maniglioni di sicurezza,
+                            sedie da doccia e sgabelli antiscivolo, per rendere l'ambiente bagno sicuro e accessibile
+                            senza necessità di costose ristrutturazioni.</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="index.html#contatti" class="cta-button secondary-cta">Richiedi Informazioni</a>
+                    </div>
+                </div>
+                <div class="section-image-column animate-on-scroll fade-right">
+                    <div class="image-placeholder text-muted">
+                        [Placeholder Immagine: Sedia Comoda e Ausili Bagno]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. STAMPELLE & BASTONI -->
+        <section id="stampelle" class="fullscreen-section step-section">
+            <div class="split-section-container">
+                <div class="section-content-column animate-on-scroll fade-right">
+                    <div class="panel-header">
+                        <h2>STAMPELLE & BASTONI</h2>
+                        <span class="availability-tag">In Vendita</span>
+                    </div>
+                    <div class="panel-content">
+                        <p>Stampelle ascellari e canadesi in alluminio leggero, con regolazione in altezza per adattarsi
+                            a ogni corporatura. Le stampelle canadesi (avambraccio) garantiscono una presa ergonomica
+                            e una distribuzione del carico ottimale per un utilizzo prolungato e sicuro.</p>
+                        <p>Una vasta selezione di bastoni da passeggio antiscivolo, anatomici e regolabili, anche
+                            in versione tripode e quadripode per una maggiore stabilità. Il bastone giusto è il primo
+                            passo verso una camminata sicura e indipendente.</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="index.html#contatti" class="cta-button secondary-cta">Scopri i Modelli</a>
+                    </div>
+                </div>
+                <div class="section-image-column animate-on-scroll fade-left">
+                    <div class="image-placeholder text-muted">
+                        [Placeholder Immagine: Stampelle e Bastoni]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SPONDE & ACCESSORI LETTO -->
+        <section id="sponde" class="fullscreen-section step-section">
+            <div class="split-section-container reverse-layout">
+                <div class="section-content-column animate-on-scroll fade-left">
+                    <div class="panel-header">
+                        <h2>SPONDE & ACCESSORI LETTO</h2>
+                        <span class="availability-tag">In Vendita</span>
+                    </div>
+                    <div class="panel-content">
+                        <p>Sponde di sicurezza per letto, regolabili e facilmente installabili su qualsiasi tipo di
+                            letto, per prevenire cadute notturne nel paziente anziano o con deficit cognitivo. Disponibili
+                            anche accessori specifici per la gestione di pazienti con demenza.</p>
+                        <p>Completano la gamma i prodotti ortopedici per letto: cuscini posturali, cunei di
+                            posizionamento, archetti solleva-coperte e triangoli di aiuto per il sollevamento autonomo
+                            del paziente allettato, elementi fondamentali per la cura quotidiana a domicilio.</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="index.html#contatti" class="cta-button secondary-cta">Richiedi Informazioni</a>
+                    </div>
+                </div>
+                <div class="section-image-column animate-on-scroll fade-right">
+                    <div class="image-placeholder text-muted">
+                        [Placeholder Immagine: Sponde Letto e Accessori]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. ABBIGLIAMENTO PER DEGENZA -->
+        <section id="abbigliamento" class="fullscreen-section step-section">
+            <div class="split-section-container">
+                <div class="section-content-column animate-on-scroll fade-right">
+                    <div class="panel-header">
+                        <h2>ABBIGLIAMENTO PER DEGENZA</h2>
+                        <span class="availability-tag">In Vendita</span>
+                    </div>
+                    <div class="panel-content">
+                        <p>Pigiami e indumenti per degenza a chiusura posteriore, progettati per facilitare le
+                            operazioni di vestizione e cura del paziente allettato da parte del caregiver. Realizzati
+                            in tessuti morbidi, traspiranti e resistenti ai lavaggi frequenti ad alta temperatura.</p>
+                        <p>L'abbigliamento per degenza è pensato per preservare la dignità del paziente riducendo
+                            al minimo l'invasività delle manovre assistenziali, mantenendo il massimo comfort termico
+                            durante il riposo e le cure igieniche quotidiane.</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="index.html#contatti" class="cta-button secondary-cta">Richiedi Disponibilità</a>
+                    </div>
+                </div>
+                <div class="section-image-column animate-on-scroll fade-left">
+                    <div class="image-placeholder text-muted">
+                        [Placeholder Immagine: Abbigliamento per Degenza]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. PRODOTTI IGIENICI -->
+        <section id="prodotti-igienici" class="fullscreen-section step-section">
+            <div class="split-section-container reverse-layout">
+                <div class="section-content-column animate-on-scroll fade-left">
+                    <div class="panel-header">
+                        <h2>PRODOTTI IGIENICI</h2>
+                        <span class="availability-tag">In Vendita</span>
+                    </div>
+                    <div class="panel-content">
+                        <p>Pannoloni per adulti in varie taglie e assorbenze, per garantire comfort e protezione
+                            al paziente non autosufficiente nelle 24 ore. Una gamma selezionata per discrezione,
+                            traspirabilità e capacità assorbente, per agevolare la gestione quotidiana del caregiver.</p>
+                        <p>Guanti monouso in vinile, nitrile o cotone per garantire igiene e protezione durante
+                            le manovre assistenziali. Un presidio fondamentale per ogni setting di cura domiciliare
+                            professionale e familiare, disponibile in varie misure e confezioni.</p>
                     </div>
                     <div class="panel-footer">
                         <a href="index.html#contatti" class="cta-button secondary-cta">Richiedi Disponibilità</a>
@@ -275,62 +319,7 @@
                 </div>
                 <div class="section-image-column animate-on-scroll fade-right">
                     <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: Pedaliere]
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. ELETTROCARDIOGRAFI (ECG) -->
-        <section id="ecg" class="fullscreen-section step-section">
-            <div class="split-section-container">
-                <div class="section-content-column animate-on-scroll fade-right">
-                    <div class="panel-header">
-                        <h2>ELETTROCARDIOGRAFI (ECG)</h2>
-                        <span class="availability-tag">In Vendita</span>
-                    </div>
-                    <div class="panel-content">
-                        <p>Sistemi portatili e tascabili di altissima precisione per il monitoraggio ed il tracciato
-                            rapido dell'attività cardiaca domiciliare.</p>
-                        <p>Questi dispositivi all'avanguardia offrono la rassicurante capacità di registrare con perizia
-                            il proprio ECG, consentendo al paziente di rilevare in pochi secondi potenziali anomalie
-                            cardiache da poter condividere facilmente col proprio medico specialista.</p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="index.html#contatti" class="cta-button secondary-cta">Visualizza Modelli</a>
-                    </div>
-                </div>
-                <div class="section-image-column animate-on-scroll fade-left">
-                    <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: ECG Tascabile]
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. MISURATORI DI PRESSIONE -->
-        <section id="pressione" class="fullscreen-section step-section">
-            <div class="split-section-container reverse-layout">
-                <div class="section-content-column animate-on-scroll fade-left">
-                    <div class="panel-header">
-                        <h2>MISURATORI DI PRESSIONE</h2>
-                        <span class="availability-tag">In Vendita</span>
-                    </div>
-                    <div class="panel-content">
-                        <p>Trattiamo con cura solamente strumenti clinicamente validati per il monitoraggio scrupoloso
-                            della pressione arteriosa (sistolica e diastolica) e del battito, appoggiandoci a marchi
-                            rinomati mondiale quali Omron e le eccellenze italiane Moretti.</p>
-                        <p>Facilissimi da indossare grazie a bracciali comfort avanzati, sono progettati per fornire
-                            quotidianamente misurazioni precisissime e leggibili a chiunque, facilitando enormemente la
-                            corretta prevenzione e gestione domiciliare.</p>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="index.html#contatti" class="cta-button secondary-cta">Scopri di pù</a>
-                    </div>
-                </div>
-                <div class="section-image-column animate-on-scroll fade-right">
-                    <div class="image-placeholder text-muted">
-                        [Placeholder Immagine: Misuratore Pressione]
+                        [Placeholder Immagine: Prodotti Igienici e Guanti]
                     </div>
                 </div>
             </div>
@@ -338,7 +327,7 @@
 
     </main>
 
-    <!-- Site Footer -->
+    <!-- Footer -->
     <footer class="site-footer" id="site-footer" style="position:relative; z-index:100; margin-top:0;">
         <div class="footer-container">
             <div class="footer-brand">
@@ -380,9 +369,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
                             <a href="tel:0516190581">051 619 05 81</a>
                         </li>
@@ -399,8 +386,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                </path>
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                             <a href="mailto:silviapuccetti70@gmail.com">silviapuccetti70@gmail.com</a>
@@ -423,7 +409,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/elettromedicali.js"></script>
+    <script type="module" src="/ausili.js"></script>
 </body>
 
 </html>
