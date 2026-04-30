@@ -1113,17 +1113,8 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* Ensure no scrollbar */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-    overflow-y: scroll;
-    overflow-x: hidden;
-    /* Prevent horizontal scroll just in case */
-    cursor: grab;
+    overflow: hidden;
     padding: 0 15px;
-    /* Added internal padding so cards don't hit edge when scaling */
 }
 
 .testimonials-carousel::-webkit-scrollbar {
@@ -2537,14 +2528,27 @@ a.contact-value:hover {
 .image-placeholder.map-display {
     padding: 0;
     overflow: hidden;
+    /* Override parent flex centering — iframe must stretch fully */
+    display: block;
+    min-height: 500px;
 }
 
 .image-placeholder.map-display iframe {
     width: 100%;
     height: 100%;
+    min-height: 500px;
     border: 0;
     display: block;
     filter: invert(0.92) hue-rotate(180deg) saturate(0.7);
+}
+
+@media (max-width: 768px) {
+    .image-placeholder.map-display {
+        min-height: 360px;
+    }
+    .image-placeholder.map-display iframe {
+        min-height: 360px;
+    }
 }
 
 /* Schedule table inside placeholder (Orari section) */

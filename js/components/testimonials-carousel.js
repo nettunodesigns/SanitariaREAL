@@ -1,73 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('.testimonials-carousel-wrapper');
+    const track = document.querySelector('.carousel-track');
+    if (!wrapper || !track) return;
+
+    // Duplicate cards for seamless infinite loop
+    const origCards = Array.from(track.children);
+    origCards.forEach(card => track.appendChild(card.cloneNode(true)));
+
+    // Switch carousel from scroll to transform-based
     const carousel = document.getElementById('testimonialsCarousel');
-    if (!carousel) return;
+    if (carousel) {
+        carousel.style.overflow = 'hidden';
+        carousel.style.cursor = 'default';
+    }
+    track.style.willChange = 'transform';
 
-    let rafId = null;
-    let restartTimer = null;
+    const SPEED = 0.55; // px per rAF frame (~33px/s at 60fps)
+    let offset = 0;
     let isPaused = false;
-    let isTouching = false;
-    const SCROLL_SPEED = 1;
-    const RESTART_DELAY = 2200;
+    let isDragging = false;
+    let dragStartY = 0;
+    let dragStartOffset = 0;
+    let rafId = null;
 
-    function getScrollMax() {
-        return carousel.scrollHeight - carousel.clientHeight;
+    function getHalf() {
+        return track.scrollHeight / 2;
     }
 
     function tick() {
-        if (!isPaused && !isTouching) {
-            carousel.scrollTop += SCROLL_SPEED;
-
-            if (carousel.scrollTop >= getScrollMax() - 2) {
-                rafId = null;
-                restartTimer = setTimeout(() => {
-                    carousel.scrollTop = 0;
-                    rafId = requestAnimationFrame(tick);
-                }, RESTART_DELAY);
-                return;
-            }
+        if (!isPaused && !isDragging) {
+            offset += SPEED;
+            // Seamless reset: at exactly half-height the duplicate starts
+            const half = getHalf();
+            if (offset >= half) offset -= half;
+            track.style.transform = `translateY(-${offset}px)`;
         }
         rafId = requestAnimationFrame(tick);
     }
 
     rafId = requestAnimationFrame(tick);
 
-    carousel.addEventListener('mouseenter', () => { isPaused = true; });
-    carousel.addEventListener('mouseleave', () => {
+    // Pause on hover
+    wrapper.addEventListener('mouseenter', () => { isPaused = true; });
+    wrapper.addEventListener('mouseleave', () => {
         isPaused = false;
-        if (!rafId && !isTouching) rafId = requestAnimationFrame(tick);
+        isDragging = false;
     });
 
-    let startY, scrollTopOnStart;
-    carousel.addEventListener('mousedown', (e) => {
+    // Drag to scrub
+    wrapper.addEventListener('mousedown', (e) => {
+        isDragging = true;
         isPaused = true;
-        startY = e.pageY - carousel.offsetTop;
-        scrollTopOnStart = carousel.scrollTop;
-    });
-    carousel.addEventListener('mouseup', () => {
-        isPaused = false;
-        if (!rafId) rafId = requestAnimationFrame(tick);
-    });
-    carousel.addEventListener('mousemove', (e) => {
-        if (!isPaused) return;
+        dragStartY = e.clientY;
+        dragStartOffset = offset;
         e.preventDefault();
-        carousel.scrollTop = scrollTopOnStart - (e.pageY - carousel.offsetTop - startY) * 2;
     });
 
-    // Mobile: pause auto-scroll on touch, let browser scroll natively.
-    // No touchmove override — browser propagates scroll to page at the natural boundary.
-    carousel.addEventListener('touchstart', () => {
-        isTouching = true;
-        if (restartTimer) { clearTimeout(restartTimer); restartTimer = null; }
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-    }, { passive: true });
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const delta = dragStartY - e.clientY;
+        const half = getHalf();
+        offset = ((dragStartOffset + delta) % half + half) % half;
+        track.style.transform = `translateY(-${offset}px)`;
+    });
 
-    carousel.addEventListener('touchend', () => {
-        isTouching = false;
-        restartTimer = setTimeout(() => {
-            if (carousel.scrollTop >= getScrollMax() - 2) {
-                carousel.scrollTop = 0;
+    window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        isPaused = false;
+    });
+
+    // Mobile: don't intercept touch at all — carousel auto-scrolls in background,
+    // touch events pass through to the page so the user can scroll to the footer.
+    if (window.innerWidth > 768) {
+        wrapper.addEventListener('touchstart', () => {
+            isPaused = true;
+            dragStartY = null;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchmove', (e) => {
+            if (dragStartY === null) {
+                dragStartY = e.touches[0].clientY;
+                dragStartOffset = offset;
             }
-            rafId = requestAnimationFrame(tick);
-        }, RESTART_DELAY);
-    }, { passive: true });
+            const delta = dragStartY - e.touches[0].clientY;
+            const half = getHalf();
+            offset = ((dragStartOffset + delta) % half + half) % half;
+            track.style.transform = `translateY(-${offset}px)`;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', () => {
+            dragStartY = null;
+            isPaused = false;
+        }, { passive: true });
+    } else {
+        // On mobile the carousel sits in the page flow — make it non-interactive
+        // so all touch events scroll the page natively.
+        wrapper.style.pointerEvents = 'none';
+    }
 });

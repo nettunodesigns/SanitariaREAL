@@ -55,7 +55,11 @@
       "Bash(powershell -Command \"ls -Force ''''C:\\\\Users\\\\chris\\\\.claude.json'''' | Select-Object LastWriteTime\")",
       "Bash(cp sources/Logos_Logo_Section/* assets/brands/)",
       "Bash(cp \"sources/Image_Product_Section/\"*.png assets/products/)",
-      "Bash(cp components/* js/components/)"
+      "Bash(cp components/* js/components/)",
+      "Bash(ipconfig)",
+      "Bash(grep -oE \"[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
