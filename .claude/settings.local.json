@@ -52,7 +52,10 @@
       "Bash(powershell -Command 'Write-Host $env:OneDrive')",
       "Read(//c/Users/chris/OneDrive/claude-config/**)",
       "Bash(powershell -Command \"Get-ChildItem -Path ''''C:\\\\Users\\\\chris\\\\.claude'''' -Recurse | Sort-Object LastWriteTime -Descending | Select-Object -First 5 FullName, LastWriteTime\")",
-      "Bash(powershell -Command \"ls -Force ''''C:\\\\Users\\\\chris\\\\.claude.json'''' | Select-Object LastWriteTime\")"
+      "Bash(powershell -Command \"ls -Force ''''C:\\\\Users\\\\chris\\\\.claude.json'''' | Select-Object LastWriteTime\")",
+      "Bash(cp sources/Logos_Logo_Section/* assets/brands/)",
+      "Bash(cp \"sources/Image_Product_Section/\"*.png assets/products/)",
+      "Bash(cp components/* js/components/)"
     ]
   }
 }

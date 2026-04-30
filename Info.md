@@ -1,7 +1,7 @@
 # Sanitaria Croce — Documentazione Progetto
 
-**Ultimo aggiornamento:** 28 Aprile 2026 (v1.1 — Contatti Page + UX Fixes)  
-**Versione:** 1.1 — Launch 6 Pages (5 Products + Contatti)
+**Ultimo aggiornamento:** 29 Aprile 2026 (v1.2 — Folder Restructure + UI Fixes)  
+**Versione:** 1.2 — Reorganized Codebase + Mobile Fixes
 
 ---
 
@@ -30,7 +30,7 @@
 
 ---
 
-## 📂 Struttura Cartelle
+## 📂 Struttura Cartelle (v1.2 — Reorganized)
 
 ```
 MammaSuAntiGrav/
@@ -40,36 +40,42 @@ MammaSuAntiGrav/
 ├── ausili.html                  (Pagina prodotti)
 ├── cuscini.html                 (Pagina prodotti)
 ├── creme.html                   (Pagina prodotti)
-├── contatti.html                (Pagina contatti - NUOVA v1.1)
-├── main.js                       (Script entry point homepage)
-├── elettromedicali.js           (Script pagina elettromedicali)
-├── ortopedici.js                (Script pagina ortopedici)
-├── ausili.js                    (Script pagina ausili)
-├── cuscini.js                   (Script pagina cuscini)
-├── creme.js                     (Script pagina creme)
-├── contatti.js                  (Script pagina contatti - NUOVO v1.1)
-├── style.css                    (Styling globale - AGGIORNATO v1.1)
+├── contatti.html                (Pagina contatti)
 ├── vite.config.js               (Configurazione Vite)
-├── components/
-│   ├── animated-grid.js         (SVG grid pattern animata)
-│   ├── testimonials-carousel.js (Carousel testimonianze)
-│   ├── text-reveal.js           (Text reveal animation)
-│   ├── scroll-animations.js     (Scroll-based animations)
-│   └── smooth-scroll-guide.js   (Scroll utilities)
-└── sources/
-    ├── Logo_Mamma.svg
-    ├── Landing_Hero/            (Background slider images)
+├── package.json
+├── css/
+│   └── style.css                (Styling globale - REORGANIZZATO v1.2)
+├── js/
+│   ├── main.js                  (Script entry point homepage)
+│   ├── elettromedicali.js       (Script pagina elettromedicali)
+│   ├── ortopedici.js            (Script pagina ortopedici)
+│   ├── ausili.js                (Script pagina ausili)
+│   ├── cuscini.js               (Script pagina cuscini)
+│   ├── creme.js                 (Script pagina creme)
+│   ├── contatti.js              (Script pagina contatti)
+│   └── components/
+│       ├── animated-grid.js     (SVG grid pattern animata)
+│       ├── testimonials-carousel.js (Carousel testimonianze - FIXED v1.2)
+│       ├── text-reveal.js       (Text reveal animation)
+│       ├── scroll-animations.js (Scroll-based animations)
+│       └── smooth-scroll-guide.js (Scroll utilities)
+└── assets/
+    ├── logos/                   (RINOMINATO: sources/Logo_Mamma_*.svg)
+    │   ├── Logo_Mamma_Standard.svg
+    │   ├── Logo_Mamma_DarkMode.svg
+    │   └── Logo_Mamma_LightMode.svg
+    ├── hero/                    (Rinominato: sources/Landing_Hero/)
     │   ├── bgHERO_neck.png
-    │   ├── bgHERO_hip.jpg
+    │   ├── bgHero_hip.png       (FIX v1.2: era bgHERO_hip.jpg)
     │   └── bgHERO_knee.png
-    ├── Image_Product_Section/
+    ├── products/                (Rinominato: sources/Image_Product_Section/)
     │   ├── cat_elettromedicali_1772653439952.png
     │   ├── cat_ortopedici_1772653426210.png
     │   ├── cat_ausili_1772653454470.png
     │   ├── cat_cuscini_1772653468818.png
     │   └── cat_creme_1772653483614.png
-    ├── Logos_Logo_Section/      (Marchi affiliati)
-    └── Elementi per la Testimonials Section/
+    └── brands/                  (Rinominato: sources/Logos_Logo_Section/)
+        └── (tutti i loghi dei marchi)
 ```
 
 ---
@@ -149,6 +155,43 @@ Ogni pagina prodotto segue questo layout:
 
 **JS Files (identici tra loro):**
 - `ortopedici.js`, `ausili.js`, `cuscini.js`, `creme.js`, `contatti.js` — Funzionalità: mobile toggle, scroll spy, index visibility, intersection observer animations, smooth scroll snap
+
+---
+
+## 📦 Sessione 29 Aprile 2026 (v1.2) — Codebase Restructure + UI/Mobile Fixes
+
+### ✅ Folder Reorganization (v1.2)
+- **Moved:** `style.css` → `css/style.css`
+- **Moved:** All page JS files → `js/` (main.js, ausili.js, etc.)
+- **Moved:** `components/` → `js/components/`
+- **Renamed:** `sources/` → `assets/` with subdirectories:
+  - `assets/logos/` (old Logo_Mamma.svg → Logo_Mamma_Standard.svg)
+  - `assets/hero/` (old Landing_Hero/)
+  - `assets/products/` (old Image_Product_Section/)
+  - `assets/brands/` (old Logos_Logo_Section/)
+- **Updated:** All 7 HTML files with new asset/script paths
+
+### ✅ UI Fixes (v1.2)
+
+| Elemento | Cambio v1.2 |
+|----------|------------|
+| **Tags highlight-tag** | Verde (`rgba(82, 144, 109, 0.15)`) → Bianco/Glass (`rgba(255,255,255,0.1)`) — applies to: materassi, kinetec, piedi, antidecubito, collagene |
+| **Ausili placeholder borders (Group A)** | Gold `#d4a027` (ambiguo su olive) → Amber `#f59e0b` (chiaro, non greenish) — materassi, sedie, abbigliamento |
+| **Hero hip image** | `bgHERO_hip.jpg` → `bgHero_hip.png` (match actual filename) |
+| **Logo references** | `sources/Logo_Mamma.svg` → `assets/logos/Logo_Mamma_Standard.svg` |
+
+### ✅ Mobile Carousel Fix (v1.2)
+
+**Problem:** Infinite scroll with duplicated cards trapped mobile users; couldn't scroll past carousel to access page.
+
+**Solution:**
+- Removed 4 duplicated cards from HTML (non-infinite behavior)
+- Rewrite `testimonials-carousel.js`:
+  - Auto-scroll to real end, pause 2.2s, smoothly reset to top + restart
+  - Desktop drag: mouse handling unchanged
+  - Mobile touch: removed `touchmove` override → browser handles native scroll natively
+  - At carousel bottom, scroll naturally propagates to page
+  - Touch events use `{ passive: true }` for optimal performance
 
 ---
 
@@ -355,14 +398,17 @@ npm run preview      # Visualizza build locale
 - ⚠️ OG tags (Open Graph) assenti — utili per social share
 - ⚠️ Structura dati schema.json assente
 
-### 🖼️ Assets
-- Tutti gli asset statici in `/sources/` (non bundled da Vite)
-- Percorsi assoluti: `sources/Logo_Mamma.svg`, `sources/Image_Product_Section/...`
+### 🖼️ Assets (v1.2 — Reorganized)
+- Tutti gli asset statici in `/assets/` (non bundled da Vite)
+- Sottocartelle: `assets/logos/`, `assets/hero/`, `assets/products/`, `assets/brands/`
+- Percorsi HTML: `assets/logos/Logo_Mamma_Standard.svg`, `assets/hero/bgHERO_neck.png`, etc.
+- Percorsi CSS: `css/style.css`
+- Percorsi JS: `/js/main.js`, `/js/ausili.js`, etc.
 - Attenzione: case-sensitive su Linux/Mac deployment
 
 ---
 
-## 📋 Checklist Status (v1.1)
+## 📋 Checklist Status
 
 ### ✅ Completato (v1.0 → v1.1)
 - [x] Contatti page creata (contatti.html + contatti.js)
@@ -373,11 +419,22 @@ npm run preview      # Visualizza build locale
 - [x] Smooth scroll robustezza migliorata (scrollbar drag fix)
 - [x] Navbar "Contatti" link aggiornato (tutte le pagine)
 
+### ✅ Completato (v1.1 → v1.2)
+- [x] Codebase folder restructure (css/, js/, assets/ con sottocartelle)
+- [x] Highlight tags: green → white/glass (materassi, kinetec, piedi, antidecubito, collagene)
+- [x] Ausili Group A placeholder borders: gold #d4a027 → amber #f59e0b (materassi, sedie, abbigliamento)
+- [x] Hero image fix: bgHERO_hip.jpg → bgHero_hip.png
+- [x] Logo path updated: sources/Logo_Mamma.svg → assets/logos/Logo_Mamma_Standard.svg
+- [x] Mobile testimonial carousel: non-infinite, auto-restart, native touch scroll
+- [x] Removed duplicate carousel cards from HTML
+- [x] Updated all 7 HTML files with new asset/script paths
+- [x] Updated Info.md documentation
+
 ### ⏳ Prossima Sessione
 - [ ] Caricare immagini reali per sezioni prodotto
 - [ ] Personalizzare descrizioni prodotti (attualmente placeholder/template)
 - [ ] Aggiungere favicon
-- [ ] Test mobile su device reali
+- [ ] Test mobile su device reali (dopo carousel fix)
 - [ ] Verificare velocità pagina (Lighthouse)
 - [ ] Aggiungere meta description e OG tags (per SEO)
 - [ ] Testare animazioni scroll su mobile (performance check)
@@ -407,6 +464,6 @@ npm run preview      # Visualizza build locale
 
 ---
 
-**Versione documento:** 1.1  
-**Ultimo aggiornamento:** 28 Aprile 2026 (v1.1 — Contatti Page + UX Enhancements)  
-**Prossimo aggiornamento:** Fine sessione successiva (image assets + SEO meta tags)
+**Versione documento:** 1.2  
+**Ultimo aggiornamento:** 29 Aprile 2026 (v1.2 — Folder Restructure + UI Fixes + Mobile Carousel)  
+**Prossimo aggiornamento:** Fine sessione successiva (image assets + SEO meta tags + mobile testing)

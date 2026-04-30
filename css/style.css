@@ -2052,9 +2052,9 @@ body {
 }
 
 .highlight-tag {
-    background: rgba(82, 144, 109, 0.15);
-    border-color: var(--color-soft-green);
-    color: #e0f0e5;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.45);
+    color: var(--color-white);
 }
 
 .panel-content p {
@@ -2369,9 +2369,9 @@ a.accordion-item {
 }
 
 /* Magic Border - Ausili */
-#materassi .image-placeholder { --border-color: #d4a027; }
-#sedie .image-placeholder { --border-color: #d4a027; }
-#abbigliamento .image-placeholder { --border-color: #d4a027; }
+#materassi .image-placeholder { --border-color: #f59e0b; }
+#sedie .image-placeholder { --border-color: #f59e0b; }
+#abbigliamento .image-placeholder { --border-color: #f59e0b; }
 #deambulatori .image-placeholder { --border-color: #84cc16; }
 #stampelle .image-placeholder { --border-color: #84cc16; }
 #prodotti-igienici .image-placeholder { --border-color: #84cc16; }
