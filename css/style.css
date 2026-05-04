@@ -1942,6 +1942,16 @@ body {
     --border-color: #ffffff;
 }
 
+.image-placeholder img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+
 /* The magic glowing border layer */
 .image-placeholder::before {
     content: "";
@@ -2460,10 +2470,9 @@ a.accordion-item {
 #sede .image-placeholder { --border-color: #dbeafe; }
 #orari .image-placeholder { --border-color: #ffffff; }
 
-/* Contatti hero background — pure CSS gradient (no product image) */
+/* Contatti hero background */
 .page-hero-bg--contatti {
-    background: radial-gradient(ellipse at top, #1a1e26 0%, #0a0c10 55%, #050608 100%);
-    filter: none;
+    background-image: url('../assets/hero/bgHERO_contatti.png');
 }
 
 /* Contact display panels (replace placeholder text with rich content) */
