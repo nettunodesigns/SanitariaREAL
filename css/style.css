@@ -1662,8 +1662,7 @@ body {
 .sticky-bare-index {
     position: fixed;
     top: 0;
-    left: -400px;
-    /* Hide off canvas */
+    left: 0;
     height: 100vh;
     width: 350px;
     display: flex;
@@ -1671,15 +1670,18 @@ body {
     justify-content: center;
     padding-left: 3%;
     z-index: 50;
+    overflow: hidden;
 
     /* Dark shade covering the whole side to ensure contrast */
     background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(18, 18, 18, 0.9) 70%, transparent 100%);
 
-    transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* translateX(-100%) always hides exactly the full panel width — no overflow bleed */
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .sticky-bare-index.open {
-    left: 0;
+    transform: translateX(0);
 }
 
 .bare-index-list {
