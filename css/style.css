@@ -1113,17 +1113,8 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* Ensure no scrollbar */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-    overflow-y: scroll;
-    overflow-x: hidden;
-    /* Prevent horizontal scroll just in case */
-    cursor: grab;
+    overflow: hidden;
     padding: 0 15px;
-    /* Added internal padding so cards don't hit edge when scaling */
 }
 
 .testimonials-carousel::-webkit-scrollbar {
@@ -1671,8 +1662,7 @@ body {
 .sticky-bare-index {
     position: fixed;
     top: 0;
-    left: -400px;
-    /* Hide off canvas */
+    left: 0;
     height: 100vh;
     width: 350px;
     display: flex;
@@ -1680,15 +1670,18 @@ body {
     justify-content: center;
     padding-left: 3%;
     z-index: 50;
+    overflow: hidden;
 
     /* Dark shade covering the whole side to ensure contrast */
     background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(18, 18, 18, 0.9) 70%, transparent 100%);
 
-    transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* translateX(-100%) always hides exactly the full panel width — no overflow bleed */
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .sticky-bare-index.open {
-    left: 0;
+    transform: translateX(0);
 }
 
 .bare-index-list {
@@ -1949,6 +1942,16 @@ body {
     position: relative;
     /* Default animated border color */
     --border-color: #ffffff;
+}
+
+.image-placeholder img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
 }
 
 /* The magic glowing border layer */
@@ -2469,10 +2472,9 @@ a.accordion-item {
 #sede .image-placeholder { --border-color: #dbeafe; }
 #orari .image-placeholder { --border-color: #ffffff; }
 
-/* Contatti hero background — pure CSS gradient (no product image) */
+/* Contatti hero background */
 .page-hero-bg--contatti {
-    background: radial-gradient(ellipse at top, #1a1e26 0%, #0a0c10 55%, #050608 100%);
-    filter: none;
+    background-image: url('../assets/hero/bgHERO_contatti.png');
 }
 
 /* Contact display panels (replace placeholder text with rich content) */
@@ -2537,14 +2539,27 @@ a.contact-value:hover {
 .image-placeholder.map-display {
     padding: 0;
     overflow: hidden;
+    /* Override parent flex centering — iframe must stretch fully */
+    display: block;
+    min-height: 500px;
 }
 
 .image-placeholder.map-display iframe {
     width: 100%;
     height: 100%;
+    min-height: 500px;
     border: 0;
     display: block;
     filter: invert(0.92) hue-rotate(180deg) saturate(0.7);
+}
+
+@media (max-width: 768px) {
+    .image-placeholder.map-display {
+        min-height: 360px;
+    }
+    .image-placeholder.map-display iframe {
+        min-height: 360px;
+    }
 }
 
 /* Schedule table inside placeholder (Orari section) */

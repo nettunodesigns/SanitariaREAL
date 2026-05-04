@@ -4,13 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanitaria Croce</title>
+    <title>Sanitaria Croce – Ortopedia & Medicali a Casalecchio (BO)</title>
+    <meta name="description" content="Sanitaria Croce a Casalecchio di Reno (Bologna): articoli ortopedici, ausili per la mobilità, elettromedicali, cuscini posturali e creme medicali. Vendita e noleggio. Tel: 051 619 05 81.">
+    <meta name="keywords" content="sanitaria, ortopedica, Bologna, Casalecchio, ausili mobilità, busti ortopedici, elettromedicali, cuscini antidecubito, noleggio carrozzine, calze compressione">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sanitariacroce.it/">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logos/Logo_Mamma_Standard.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/logos/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/logos/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sanitaria Croce">
+    <meta property="og:title" content="Sanitaria Croce | Articoli Ortopedici e Medicali">
+    <meta property="og:description" content="Articoli ortopedici, ausili per la mobilità, elettromedicali, cuscini posturali e creme medicali a Casalecchio di Reno (BO). Vendita e noleggio.">
+    <meta property="og:image" content="https://sanitariacroce.it/assets/logos/Logo_Mamma_Standard.svg">
+    <meta property="og:url" content="https://sanitariacroce.it/">
+    <meta property="og:locale" content="it_IT">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sanitaria Croce | Articoli Ortopedici e Medicali">
+    <meta name="twitter:description" content="Articoli ortopedici, ausili, elettromedicali a Casalecchio di Reno (BO). Vendita e noleggio.">
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Sanitaria Croce",
+      "description": "Vendita e noleggio di articoli ortopedici, ausili per la mobilità, elettromedicali, cuscini posturali e creme medicali.",
+      "url": "https://sanitariacroce.it",
+      "telephone": "+390516190581",
+      "email": "silviapuccetti70@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Porrettana 66/2",
+        "addressLocality": "Casalecchio di Reno",
+        "addressRegion": "BO",
+        "postalCode": "40033",
+        "addressCountry": "IT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.4748,
+        "longitude": 11.2714
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "09:00", "closes": "12:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "16:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday","Saturday"], "opens": "09:00", "closes": "12:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "09:00", "closes": "12:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "16:00", "closes": "19:00" }
+      ],
+      "priceRange": "€€"
+    }
+    </script>
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Playfair+Display:ital,wght@1,600&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="preload" as="image" href="assets/hero/bgHERO_neck.webp">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -18,9 +74,9 @@
     <section class="hero">
         <!-- Background Slider -->
         <div class="hero-slider">
-            <div class="hero-slide" style="background-image: url('assets/hero/bgHERO_neck.png');"></div>
-            <div class="hero-slide" style="background-image: url('assets/hero/bgHero_hip.png');"></div>
-            <div class="hero-slide" style="background-image: url('assets/hero/bgHERO_knee.png');"></div>
+            <div class="hero-slide" style="background-image: url('assets/hero/bgHERO_neck.webp');"></div>
+            <div class="hero-slide" data-bg="assets/hero/bgHero_hip.webp"></div>
+            <div class="hero-slide" data-bg="assets/hero/bgHERO_knee.webp"></div>
         </div>
 
         <header class="navbar">
@@ -39,10 +95,11 @@
                         <a href="creme.html">Creme</a>
                     </div>
                 </div>
+                <a href="inventario.html">Inventario</a>
                 <a href="contatti.html">Contatti</a>
             </nav>
             <div class="social-icon">
-                <a href="https://instagram.com" aria-label="Instagram">
+                <a href="https://www.instagram.com/puccetti.silvia/" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-instagram">
@@ -87,27 +144,27 @@
     <section class="products-section">
         <div class="product-accordion animate-on-scroll fade-up">
             <a href="elettromedicali.html" class="accordion-item delay-1"
-                style="background-image: url('assets/products/cat_elettromedicali_1772653439952.png');">
+                style="background-image: url('assets/products/cat_elettromedicali_1772653439952.webp');">
                 <div class="item-overlay"></div>
                 <h3>Prodotti<br>Elettromedicali</h3>
             </a>
             <a href="ortopedici.html" class="accordion-item delay-2"
-                style="background-image: url('assets/products/cat_ortopedici_1772653426210.png');">
+                style="background-image: url('assets/products/cat_ortopedici_1772653426210.webp');">
                 <div class="item-overlay"></div>
                 <h3>Prodotti<br>Ortopedici</h3>
             </a>
             <a href="ausili.html" class="accordion-item delay-3"
-                style="background-image: url('assets/products/cat_ausili_1772653454470.png');">
+                style="background-image: url('assets/products/cat_ausili_1772653454470.webp');">
                 <div class="item-overlay"></div>
                 <h3>Ausili</h3>
             </a>
             <a href="cuscini.html" class="accordion-item delay-4"
-                style="background-image: url('assets/products/cat_cuscini_1772653468818.png');">
+                style="background-image: url('assets/products/cat_cuscini_1772653468818.webp');">
                 <div class="item-overlay"></div>
                 <h3>Cuscini</h3>
             </a>
             <a href="creme.html" class="accordion-item delay-5"
-                style="background-image: url('assets/products/cat_creme_1772653483614.png');">
+                style="background-image: url('assets/products/cat_creme_1772653483614.webp');">
                 <div class="item-overlay"></div>
                 <h3>Creme</h3>
             </a>
@@ -247,13 +304,18 @@
                 <img src="assets/logos/Logo_Mamma_Standard.svg" alt="Sanitaria Croce Logo" class="footer-logo">
                 <p class="footer-tagline">Articoli ortopedici e medicali per migliorare la terza età.</p>
                 <div class="footer-socials">
-                    <a href="https://instagram.com" aria-label="Instagram">
+                    <a href="https://www.instagram.com/puccetti.silvia/" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-instagram">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/1AzHyQDsYc/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                         </svg>
                     </a>
                 </div>
@@ -315,7 +377,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Sanitaria Croce. Tutti i diritti riservati. P.IVA non specificata.</p>
+            <p>&copy; 2026 Sanitaria Croce. Tutti i diritti riservati. | P.IVA: 03645231204</p>
         </div>
     </footer>
 
