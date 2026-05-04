@@ -75,7 +75,7 @@
 /* Controls */
 .inv-controls {
     position: sticky;
-    top: 0;
+    top: 80px;
     z-index: 20;
     background: rgba(15, 20, 16, 0.85);
     backdrop-filter: blur(18px);
@@ -553,6 +553,7 @@ body.inv-has-query .inv-search-clear {
         min-height: 50vh;
     }
     .inv-controls {
+        top: 80px;
         padding: 1.2rem 1.5rem 1rem;
     }
     .inv-grid-root {
@@ -573,5 +574,11 @@ body.inv-has-query .inv-search-clear {
     }
     .inv-modal-title {
         font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .inv-controls {
+        top: 70px;
     }
 }

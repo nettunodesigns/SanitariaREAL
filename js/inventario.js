@@ -204,7 +204,7 @@ function renderGrid() {
 function cardTpl(p) {
     return `<article class="inv-card" data-id="${p.f}" tabindex="0">
         <div class="inv-card-image">
-            <img src="assets/gallery/${p.f}" alt="${p.n}" loading="lazy">
+            <img src="/assets/gallery/${p.f}" alt="${p.n}" loading="lazy">
         </div>
         <div class="inv-card-body">
             <span class="inv-card-brand">${p.b}</span>
@@ -263,7 +263,7 @@ function openModal(id) {
     const p = PRODUCTS.find(x => x.f === id);
     if (!p) return;
     const modal = document.getElementById('inv-modal');
-    document.getElementById('inv-modal-image').src = `assets/gallery/${p.f}`;
+    document.getElementById('inv-modal-image').src = `/assets/gallery/${p.f}`;
     document.getElementById('inv-modal-image').alt = p.n;
     document.getElementById('inv-modal-cat').textContent = (CATEGORIES.find(c => c.id === p.c) || {}).label || '';
     document.getElementById('inv-modal-title').textContent = p.n;
