@@ -9,7 +9,117 @@
 
 ---
 
-## Latest Session Work (2026-04-30)
+## Latest Session Work (2026-05-04)
+
+### 1. **Product Section Images** — WebP Conversion (Complete)
+Converted all 49 PNGs in `NONCENTRA/` to WebP via sharp (quality 82) → `assets/sections/`.
+
+| Before | After | Reduction |
+|--------|-------|-----------|
+| 23 MB (49 PNGs) | 2 MB (49 WebPs) | **91%** |
+
+- All 5 product pages updated: `NONCENTRA/*.png` → `/assets/sections/*.webp`
+- `NONCENTRA/` folder remains on disk (untracked) as originals
+
+---
+
+### 2. **SEO** — Full Meta Stack on All 8 Pages (Complete)
+Added to every page:
+- `<meta name="description">` — unique, keyword-rich per page (150-160 chars)
+- `<meta name="keywords">` — local + product terms
+- `<meta name="robots" content="index, follow">`
+- `<link rel="canonical">` — prevents duplicate content penalties
+- **Open Graph** (og:title, og:description, og:image, og:url, og:type, og:locale)
+- **Twitter Card** meta
+- **JSON-LD `MedicalBusiness` schema** on index.html and contatti.html (name, address, phone, email, hours, geo)
+- Trimmed all titles to ≤60 chars for Google SERP (format: `Keyword | Sanitaria Croce`)
+
+New files: `robots.txt`, `sitemap.xml` (all 8 pages with priorities)
+
+> Domain placeholder: `sanitariacroce.it` — swap when production domain is set.
+
+---
+
+### 3. **Favicon** — Generated from Logo (Complete)
+Converted `assets/logos/Logo_Mamma_Standard.svg` via sharp:
+
+| File | Size | Use |
+|------|------|-----|
+| `favicon.ico` | 32×32 | Legacy browser fallback (root) |
+| `favicon-16x16.png` | 16×16 | Browser tab small |
+| `favicon-32x32.png` | 32×32 | Browser tab HiDPI |
+| `apple-touch-icon.png` | 180×180 | iOS home screen |
+| `android-chrome-192x192.png` | 192×192 | Android / PWA |
+| `android-chrome-512x512.png` | 512×512 | PWA splash |
+
+All 8 pages wired with `<link rel="icon">` (SVG first for modern browsers, PNG fallbacks, `.ico` last).
+
+---
+
+### 4. **Sticky Index Overflow Fix** (Complete)
+Long section names (e.g. "Ginocchiere, Polsiere & Cavigliere") were bleeding into the viewport when the index panel was closed.
+
+**Root cause:** `position: fixed` panels are not clipped by `overflow-x: clip` on `body`.
+
+**Fix (`css/style.css`):**
+- Replaced `left: -400px` → `transform: translateX(-100%)` — hides exactly 100% of the panel's own width regardless of content
+- Added `overflow: hidden` to panel — clips any text exceeding 350px box
+- Mobile override (`transform: none`, `top: -100%`) unaffected
+
+---
+
+## Previous Session Work (2026-05-03)
+
+### 1. **Real Product Images** — Placeholders Replaced (Complete)
+Replaced all `[Placeholder Immagine: ...]` divs with actual product images from the `NONCENTRA/` folder across all 5 product pages.
+
+**Mapping (37 images total):**
+
+| Page | Sections | Images Used |
+|------|----------|-------------|
+| `ausili.html` | 8 | materassi, deambulatori, carrozzine, sedie, stampelle, sponde, pigiami, pannoloni |
+| `creme.html` | 4 | arnica, detergenti, artiglio, viso |
+| `cuscini.html` | 9 | alzagambe, memory, divaricatori, antidec, prostata, emorroidi, carrozzine, coprimat, lettino |
+| `elettromedicali.html` | 8 | magneto, tens, presso, ultra, kinetec, pedaliere, ecg, misuratori |
+| `ortopedici.html` | 8 | busti, ginocchiere, calze, tutori, plantari, piedi, stetoscopio, traverse |
+
+**Implementation:**
+- Kept `.image-placeholder` wrapper div to preserve the animated glowing border
+- Added `img` inside with `position: absolute; inset: 0; object-fit: cover; border-radius: 18px`
+- Added CSS rule `.image-placeholder img { ... }` to `css/style.css`
+- All imgs use `loading="lazy"` for performance
+- Images served from `NONCENTRA/` folder (root-level)
+
+**Unmapped images** (secondary products within multi-item sections — available for future use):
+- `ausili_bastoni`, `ausili_prod_letto`, `ausili_accessori_demenza`, `ausili_guanti`
+- `orto_polsiere`, `orto_cavigliere`, `orto_slip`, `orto_ciabatte`, `orto_otoscopi`, `orto_bilance_persone`, `orto_bilance_neonati`, `orto_termofori`
+
+---
+
+### 2. **Critical Performance Fix** — WebP Conversion + Hero Optimization (Complete)
+
+**Root cause:** `bgHERO_neck.png` was **31.3 MB** — browser had to download and decode it before first render.
+
+**Conversions (via sharp @ quality 82):**
+
+| File | Before | After | Reduction |
+|------|--------|-------|-----------|
+| `bgHERO_neck.png` | 31.3 MB | 0.41 MB | **75x smaller** |
+| `bgHero_hip.png` | 1.6 MB | 0.07 MB | 23x |
+| `bgHERO_knee.png` | 1.6 MB | 0.06 MB | 27x |
+| 5× product cat PNGs | ~0.5 MB each | ~0.04 MB each | ~13x |
+| **Total** | **~37 MB** | **~1 MB** | **37x** |
+
+**Additional optimizations:**
+- `<link rel="preload">` for first hero image (highest fetch priority)
+- Hero slides 2 & 3 deferred via `data-bg` + `window.load` JS — don't block initial render
+- `numSquares: 80 → 40` in animated grid (halved GPU animation load)
+- All `.html` files updated to reference `.webp` instead of `.png`
+- `sharp` installed as devDependency
+
+---
+
+## Previous Session Work (2026-04-30)
 
 ### 1. **Inventario Page** — New Product Showcase (Complete)
 Created a full-featured inventory/catalog page showcasing all 67 products from `/assets/gallery`.
@@ -28,156 +138,116 @@ Created a full-featured inventory/catalog page showcasing all 67 products from `
 
 - **Product Grid:** Responsive 3-column grid (desktop) → 2-column (tablet) → 1-column (mobile). Cards show brand, product name, and first 3 tags.
 
-- **Hover Effects:** 
-  - Card lift (-4px) with border highlight
-  - Image scale (1.06x)
-  - Box shadow enhancement
+- **Hover Effects:** Card lift (-4px) with border highlight, image scale (1.06x), box shadow enhancement.
 
 - **Click-to-Modal:** Opens a 2-column modal (60/40 split on desktop) with full product image, brand, category badge, complete description, and all tags. Modal includes CTA button linking to Contatti page.
 
-- **UX Details:**
-  - Empty state messaging when no results match search
-  - Mobile: `pointer-events: none` on wrapper so scroll passes through to page
-  - Keyboard accessible: Enter/Space on cards opens modal, Escape closes it
-  - Modal close via X button, backdrop click, or Esc key
+- **UX Details:** Empty state messaging, mobile `pointer-events: none` on wrapper, keyboard accessible (Enter/Space opens modal, Escape closes), modal close via X, backdrop click, or Esc.
 
-**Files Added:**
-- `inventario.html` — Page structure with hero, search/filter bar, grid root, modal markup, footer
-- `js/inventario.js` — Full product database (67 items with name, brand, category, tags, description), search logic, filter logic, modal control
-- `css/inventario.css` — Dedicated stylesheet (avoid bloating main style.css). Colors match landing page theme (deep green/dark, soft-green accent).
-
+**Files Added:** `inventario.html`, `js/inventario.js`, `css/inventario.css`  
 **Navigation:** "Inventario" link added to all 8 pages in main nav dropdown.
 
 ---
 
 ### 2. **Testimonials Carousel Fix** — Smooth Infinite Loop (Fixed)
 Replaced buggy `scrollTop` scroll manipulation with hardware-accelerated `transform: translateY`.
-
-**Problem Solved:**
-- Old: Hard jump to `scrollTop = 0` caused visible position reset → user sees "jolt"
-- New: Seamless loop using duplicated track — when first set scrolls off-screen, duplicate is at exact same position visually
-
-**Implementation:**
 - Duplicated all carousel cards in JS during init
 - Use `transform: translateY(-offset)` on `.carousel-track`
 - When `offset >= halfHeight`, reset to `0` — imperceptible because both halves are identical
 - Desktop: Hover pauses animation, drag-to-scrub works
-- Mobile: `pointer-events: none` so vertical swipe scrolls the page, not the carousel
-
-**Browser Support:** Works on all modern browsers with hardware acceleration enabled.
+- Mobile: `pointer-events: none` so vertical swipe scrolls page
 
 ---
 
-### 3. **Google Maps Mobile Fix** — Fills Placeholder Correctly (Fixed)
-Fixed maps iframe that appeared as a small square inside its container on mobile.
-
-**Problem:** `.image-placeholder` was `display: flex` with `align-items: center; justify-content: center`, causing iframe (default 300×150) to stay centered instead of filling.
-
-**Solution:**
+### 3. **Google Maps Mobile Fix** (Fixed)
 - Override `.map-display` to `display: block`
 - Set explicit `min-height: 500px` (desktop) and `360px` (mobile)
-- iframe inherits `height: 100%` and now fills the container
-- Mobile-specific media query ensures proper sizing
+- iframe inherits `height: 100%` and fills the container
 
 ---
 
-### 4. **Global Updates** — Consistency & Branding (Complete)
-
-#### CTA Button Standardization
-All call-to-action buttons across 5 product pages (`elettromedicali`, `ortopedici`, `ausili`, `cuscini`, `creme`) now:
-- Display text: **"Richiedi Informazioni"** (standardized from ~8 different labels)
-- Link to: `contatti.html` (was `index.html#contatti`)
-- Class: `primary-cta` (unified, removed secondary variants)
-
-#### Instagram Link Update
-Updated Instagram URL across all 8 pages (navbar + footer):
-- **Old:** `https://instagram.com`
-- **New:** `https://www.instagram.com/puccetti.silvia/` (direct profile link)
-
-#### Facebook Integration
-Added Facebook icon and link to `footer-socials` on all 8 pages:
-- **Icon:** SVG `f` logo styled identically to Instagram icon
-- **Link:** `https://www.facebook.com/share/1AzHyQDsYc/?mibextid=wwXIfr`
-- **Positioning:** Appears next to Instagram in footer (navbar has Instagram only)
-- **Attributes:** `target="_blank" rel="noopener"` for safe external link
+### 4. **Global Updates** (Complete)
+- CTA buttons standardized to "Richiedi Informazioni" → `contatti.html`, class `primary-cta`
+- Instagram URL updated to `https://www.instagram.com/puccetti.silvia/` across all 8 pages
+- Facebook icon + link added to footer on all 8 pages
 
 ---
 
-### 5. **Product Cleanup** — Removed Duplicates (Minor)
-Deleted 2 redundant product cards from Inventario:
-- `Display_Tutori_Orthoself_OrthoserviceRoten_2.jpg` (Vista 2)
-- `Display_Tutori_Orthoself_OrthoserviceRoten_3.jpg` (Vista 3)
-
-**Kept:** Single "Linea Orthoself Tutori" card (comprehensive view)  
-**Result:** Cosmetici category now 7 items, total inventory **65 products** (was intended 67, adjusted for duplicate cleanup)
+### 5. **Product Cleanup** (Minor)
+Deleted 2 redundant product cards from Inventario (Vista 2 & 3 of Orthoself).  
+**Result:** 65 products total.
 
 ---
 
 ## Current Site Structure
 
 ### Pages
-1. **index.html** — Landing page with hero slider, statement section, product categories accordion, brand marquee, testimonials carousel, footer
-2. **ortopedici.html** — Orthopedic products (8 sections: busti, ginocchiere, calze, tutori, plantari, piedi, diagnostici, traverse)
-3. **ausili.html** — Mobility aids (8 sections: materassi, deambulatori, carrozzine, sedie, stampelle, sponde, abbigliamento, prodotti igienici)
-4. **cuscini.html** — Cushions & pillows (9 sections: alzagambe, memory foam, divaricatori, antidecubito, prostata, emorroidi, carrozzine, coprimaterassi, lettino)
-5. **elettromedicali.html** — Medical devices (8 sections: magnetoterapia, elettrostimolatori, pressoterapia, ultrasuoni, kinetec, pedaliere, ECG, pressione)
-6. **creme.html** — Cosmetics (4 sections: arnica, detergenti, artiglio diavolo, collagene)
-7. **contatti.html** — Contact page with phone, email, location (maps), hours
-8. **inventario.html** — NEW — Complete product catalog with search and filtering
-9. **404/error handling** — Not yet implemented
+1. **index.html** — Landing page: hero slider, statement, products accordion, brand marquee, testimonials carousel, footer
+2. **ortopedici.html** — 8 sections: busti, ginocchiere, calze, tutori, plantari, piedi, diagnostici, traverse
+3. **ausili.html** — 8 sections: materassi, deambulatori, carrozzine, sedie, stampelle, sponde, abbigliamento, prodotti igienici
+4. **cuscini.html** — 9 sections: alzagambe, memory foam, divaricatori, antidecubito, prostata, emorroidi, carrozzine, coprimaterassi, lettino
+5. **elettromedicali.html** — 8 sections: magnetoterapia, elettrostimolatori, pressoterapia, ultrasuoni, kinetec, pedaliere, ECG, pressione
+6. **creme.html** — 4 sections: arnica, detergenti, artiglio diavolo, collagene
+7. **contatti.html** — Contact page: phone, email, location (maps), hours
+8. **inventario.html** — Complete product catalog with search and filtering
+
+### Asset Structure
+```
+assets/
+├── logos/        Logo_Mamma_Standard.svg, favicon-*.png, apple-touch-icon.png, android-chrome-*.png
+├── hero/         bgHERO_neck.webp, bgHero_hip.webp, bgHERO_knee.webp  ← WebP
+├── products/     cat_*.webp  ← WebP
+├── brands/       brand logos
+├── gallery/      product gallery images (used by inventario.js)
+└── sections/     49× product section images as WebP  ← NEW (was NONCENTRA/*.png)
+favicon.ico       root-level legacy fallback
+robots.txt        allows all bots, points to sitemap
+sitemap.xml       all 8 pages with priorities
+NONCENTRA/        original PNGs (untracked, kept as backup)
+```
 
 ### Styling & Design System
 - **Colors:** Deep green (#22392b), soft green (#52906dbc), dark background (#121212), white text
 - **Typography:** Montserrat (primary), Inter (UI), Playfair Display (secondary), Anton (display)
-- **Fonts:** Via Google Fonts, preloaded in head
-- **Responsiveness:** Mobile-first, breakpoints at 768px (tablet) and 1024px (desktop)
-- **Animations:** CSS transitions (0.3-0.8s), Motion.js for hero slider, custom carousel
+- **Responsiveness:** Mobile-first, breakpoints at 768px and 1024px
+- **Animations:** CSS transitions, Motion.js for hero slider, custom carousel
 - **Icons:** Feather icons (SVG inline)
-
-### Key Components
-- **Navbar:** Fixed, glass-morphism on scroll, responsive hamburger menu, dropdown for Prodotti
-- **Footer:** Consistent across all pages, includes map embed, hours, contact info, social links
-- **Carousel:** Testimonials with auto-scroll, hover pause, touch-swipe support
-- **Modal:** Product detail popup with image, description, tags, CTA
 
 ---
 
 ## Technical Notes
 
-### Performance Optimizations
-- Lazy loading on images (`loading="lazy"`)
-- CSS `will-change` for animated elements
-- Hardware acceleration via `transform` and `opacity` (not `top`, `left`, `width`, `height`)
+### Performance (Post-Fix)
+- Hero images converted to WebP: ~37MB total → ~1MB total
+- First hero preloaded via `<link rel="preload">`
+- Hero slides 2 & 3 deferred until `window.load`
+- Animated grid: 80 squares → 40 squares
+- Lazy loading on all product section images (`loading="lazy"`)
+- Hardware acceleration via `transform` and `opacity`
 - Debounced search input (120ms)
-- Duplicated carousel track for seamless loop (no DOM reflow)
+
+### Image Placeholder System
+`.image-placeholder` wrapper preserved for animated glowing border (`::before` conic gradient).  
+CSS rule `.image-placeholder img` fills it: `position: absolute; inset: 0; object-fit: cover; border-radius: 18px`.
 
 ### Accessibility
 - Semantic HTML (header, nav, main, footer, article)
 - `aria-label` on all interactive elements
 - Keyboard navigation: Enter/Space to open modals, Escape to close
-- Focus indicators on all interactive elements
 - Alt text on all images
-- Proper heading hierarchy
-
-### Browser Support
-- Chrome, Firefox, Safari, Edge (latest 2 versions)
-- Mobile: iOS Safari, Chrome Mobile
-- Fallbacks for older browsers (e.g., `@supports` for CSS Grid)
 
 ---
 
 ## Next Steps / Future Enhancements
 
-1. **Analytics:** Add Google Analytics or Plausible for traffic monitoring
-2. **Contact Form:** Replace static contact info with working form (backend integration needed)
-3. **Product Filtering:** Add price range, brand filters, sorting (A-Z, price, rating)
-4. **Product Reviews:** Allow customers to rate and review products
-5. **Shopping Cart:** Integrate e-commerce functionality (currently info-only site)
-6. **Blog/News:** Add a news section for product updates and tips
-7. **Multi-language:** Add Italian translation (currently all-Italian, but i18n structure could help)
-8. **Video Content:** Add product demo videos or testimonial videos
-9. **Chat Widget:** Live chat support during business hours
-10. **SEO:** Implement structured data (schema.org), OG tags, robots.txt optimization
+1. **Update production domain** — replace `sanitariacroce.it` placeholder in canonical/OG/sitemap/JSON-LD once hosting is set
+2. **Analytics:** Google Analytics or Plausible
+3. **Contact Form:** Working form with backend integration
+4. **Product Filtering:** Price range, brand filters, sorting (A-Z)
+5. **Multi-language / i18n structure**
+6. **Chat Widget:** Live chat during business hours
+7. **SSL/HTTPS** for hosting
+8. **Submit sitemap** to Google Search Console after going live
 
 ---
 
@@ -190,7 +260,6 @@ Deleted 2 redundant product cards from Inventario:
 - Preview Command: `npm run preview`
 
 **Files to Update Before Production:**
-- Replace placeholder images in product pages (currently text placeholders)
 - Ensure all links point to correct production domain
 - Test contact form backend
 - Update analytics tracking IDs
@@ -198,18 +267,17 @@ Deleted 2 redundant product cards from Inventario:
 
 ---
 
-## Session Statistics
+## Session Statistics (2026-05-03)
 
-- **Files Created:** 3 (inventario.html, js/inventario.js, css/inventario.css)
-- **Files Modified:** 8 (index.html + 7 product pages)
-- **Products Added:** 67 (with metadata: tags, descriptions, categories)
-- **Components Fixed:** 2 (testimonials carousel, maps)
-- **Global Updates:** 3 (CTA standardization, Instagram link, Facebook integration)
-- **Total Commits This Session:** Ready to commit (CTAs, Instagram, Facebook, Inventario, Carousel, Maps)
+- **Files Modified:** 11 (ausili, creme, cuscini, elettromedicali, ortopedici, index, css/style.css + 4 via `.png → .webp` rename)
+- **Images Added:** 37 real product section images (from NONCENTRA/)
+- **Images Converted:** 8 PNGs → WebP (75x reduction on largest file)
+- **Total Page Weight Reduction:** ~37 MB → ~1 MB
+- **CSS Added:** `.image-placeholder img` fill rule
 
 ---
 
-**Project Status:** ✅ **Feature-Complete for Current Phase**  
-Ready for testing on mobile and desktop, social links verified, product catalog fully functional.
+**Project Status:** ✅ **Product images live, performance fixed**  
+All 5 product pages now show real images. Index page loads in ~1MB vs ~37MB before.
 
-**Last Updated:** 2026-04-30
+**Last Updated:** 2026-05-04
