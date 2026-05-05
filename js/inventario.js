@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
         else navbar.classList.remove('scrolled');
     });
 
+    // Collapse chips+meta when controls become sticky (hero scrolled past)
+    const hero = document.querySelector('.inv-hero');
+    const controls = document.querySelector('.inv-controls');
+    if (hero && controls) {
+        const stickyObs = new IntersectionObserver(([entry]) => {
+            controls.classList.toggle('is-sticky', !entry.isIntersecting);
+        }, { threshold: 0 });
+        stickyObs.observe(hero);
+    }
+
     initInventario();
 });
 
