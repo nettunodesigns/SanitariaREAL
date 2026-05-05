@@ -245,13 +245,12 @@ a {
 
 /* Scrolled Header with Glassmorphism */
 .navbar.scrolled {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(10, 14, 11, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
     padding: 1rem 4rem;
-    /* Shrink slightly on scroll */
 }
 
 /* Header Entry Animation */
@@ -572,6 +571,76 @@ a {
     color: var(--color-white);
     opacity: 0;
     will-change: opacity;
+}
+
+/* Servizi Section */
+.servizi-section {
+    background-color: var(--color-deep-green);
+    padding: 5.5rem 4rem 5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.servizi-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.servizi-eyebrow {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--color-soft-green);
+    margin-bottom: 3rem;
+    opacity: 0.9;
+}
+
+.servizi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.servizi-item {
+    padding: 3rem 2.5rem 2rem 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.servizi-item:not(:first-child) {
+    padding-left: 2.5rem;
+}
+
+.servizi-item:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.servizi-num {
+    display: block;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+    line-height: 1;
+    color: rgba(82, 144, 109, 0.28);
+    margin-bottom: 1.4rem;
+    letter-spacing: -2px;
+}
+
+.servizi-name {
+    font-family: var(--font-primary);
+    font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.4px;
+    line-height: 1.15;
+    margin-bottom: 1.1rem;
+}
+
+.servizi-desc {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 34ch;
 }
 
 /* Brands Affiliati Section */
@@ -944,6 +1013,33 @@ a {
 
     .statement-container {
         padding: 0 1rem;
+    }
+
+    .servizi-section {
+        padding: 4rem 1.5rem 3.5rem;
+    }
+
+    .servizi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .servizi-item {
+        padding: 2rem 0 2rem 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .servizi-item:not(:first-child) {
+        padding-left: 0;
+    }
+
+    .servizi-item:last-child {
+        border-bottom: none;
+        padding-right: 0;
+    }
+
+    .servizi-desc {
+        max-width: 100%;
     }
 
     .brands-section {

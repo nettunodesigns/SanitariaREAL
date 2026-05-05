@@ -75,7 +75,7 @@
 /* Controls */
 .inv-controls {
     position: sticky;
-    top: 0;
+    top: 80px;
     z-index: 20;
     background: rgba(15, 20, 16, 0.85);
     backdrop-filter: blur(18px);
@@ -160,6 +160,10 @@ body.inv-has-query .inv-search-clear {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    max-height: 120px;
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
 }
 
 .inv-chip {
@@ -210,6 +214,26 @@ body.inv-has-query .inv-search-clear {
     font-size: 0.82rem;
     color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.3px;
+    max-height: 40px;
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+/* Sticky compact mode — only search bar visible */
+.inv-controls.is-sticky .inv-chips,
+.inv-controls.is-sticky .inv-meta {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+.inv-controls.is-sticky .inv-controls-inner {
+    gap: 0;
+}
+
+.inv-controls.is-sticky {
+    padding: 0.75rem 4rem;
 }
 
 /* Grid */
@@ -553,7 +577,11 @@ body.inv-has-query .inv-search-clear {
         min-height: 50vh;
     }
     .inv-controls {
+        top: 80px;
         padding: 1.2rem 1.5rem 1rem;
+    }
+    .inv-controls.is-sticky {
+        padding: 0.6rem 1.5rem;
     }
     .inv-grid-root {
         padding: 2rem 1.5rem 3.5rem;
@@ -573,5 +601,11 @@ body.inv-has-query .inv-search-clear {
     }
     .inv-modal-title {
         font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .inv-controls {
+        top: 70px;
     }
 }
