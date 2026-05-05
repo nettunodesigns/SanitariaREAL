@@ -5,13 +5,6 @@ import './components/scroll-animations.js'
 import { animate } from 'motion'
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Defer non-critical hero slides until after initial render
-    window.addEventListener('load', () => {
-        document.querySelectorAll('.hero-slide[data-bg]').forEach(el => {
-            el.style.backgroundImage = `url('${el.dataset.bg}')`;
-        });
-    }, { once: true });
-
     // Initialize Animated Grid
     new AnimatedGridPattern('grid-pattern-container', {
         numSquares: 40,
