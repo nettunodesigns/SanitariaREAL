@@ -2664,6 +2664,17 @@ a.contact-value:hover {
         /* CSS filters on iframes render black on iOS/Android — disable on mobile */
         filter: none;
     }
+    /* Disable the magic-border pseudo-element on mobile for map containers —
+       mask-composite + conic-gradient creates a stacking context that
+       renders embedded iframes as solid black on iOS Safari & Chrome Android */
+    .image-placeholder.map-display::before {
+        display: none;
+    }
+    /* Parent filter (drop-shadow) on .footer-map also breaks iframe rendering
+       on mobile WebKit/Blink — strip it on small screens */
+    .footer-map {
+        filter: none;
+    }
     .footer-map iframe {
         filter: none;
     }
