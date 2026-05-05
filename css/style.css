@@ -2656,9 +2656,16 @@ a.contact-value:hover {
 @media (max-width: 768px) {
     .image-placeholder.map-display {
         min-height: 360px;
+        height: 360px;
     }
     .image-placeholder.map-display iframe {
         min-height: 360px;
+        height: 360px;
+        /* CSS filters on iframes render black on iOS/Android — disable on mobile */
+        filter: none;
+    }
+    .footer-map iframe {
+        filter: none;
     }
 }
 
